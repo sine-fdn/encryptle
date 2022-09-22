@@ -1,0 +1,22 @@
+[package]
+name = "m1-wordle"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+m1 = { version = "0.0.1-alpha-do-not-use", path = "../wrk17-alpha/m1" }
+m1_garble_interop = { path = "../wrk17-alpha/m1_garble_interop" }
+m1_http_server = { path = "../wrk17-alpha/m1_http_server" }
+rocket = { version = "0.5.0-rc.1", features = ["json"] }
+rand = "0.8.3"
+bincode = "1.3"
+serde_json = "1.0"
+uuid = { version = "0.8", features = ["serde", "v4"] }
+blake3 = "1.3"
+figment = { version = "0.10", features = ["env", "toml", "json"] }
+serde = { version = "1.0" }
+chrono = "0.4"
+rand_seeder = "0.2.3"
+rand_pcg = "0.3.1"
