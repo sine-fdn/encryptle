@@ -1,3 +1,5 @@
+use std::iter::zip;
+
 use chrono::Datelike;
 use chrono::Utc;
 use m1::Circuit;
@@ -21,11 +23,17 @@ fn rocket() -> _ {
 
     let handler = move |r: MpcRequest| -> Result<(Circuit, Vec<bool>), String> {
         if r.program != wordle_source_code {
-            return Err(format!(
-                "server: '{}', client: '{}'",
-                wordle_source_code, r.program
-            ));
+            let client_program = r.program.chars();
+            let server_program = wordle_source_code.chars();
+
+            let mut differences = zip(client_program, server_program);
+            let difference_index = differences.position(|(a, b)| a != b).unwrap();
+            let difference = differences.find(|(a, b)| a != b).unwrap();
+
+            return Err(format!("Client and server programs differ at character {:?}: {:?}, respectively.", difference_index, difference))
+
         }
+
         let current_date = Utc::today();
         let days_since_unix_epoch = current_date.num_days_from_ce();
 
