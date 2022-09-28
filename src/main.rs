@@ -12,14 +12,20 @@ extern crate rocket;
 #[launch]
 fn rocket() -> _ {
     let words: Vec<&str> = include_str!("words.txt").trim().split('\n').collect();
-
-    let prg = check_program(include_str!("wordle.garble.rs")).unwrap();
+    let wordle_source_code = include_str!("wordle.garble.rs").trim();
+    let prg = check_program(wordle_source_code).unwrap();
     let circuit = compile_program(&prg, &"wordle").unwrap();
 
     let mut nonce_rng = StdRng::from_entropy();
     let nonce: u64 = nonce_rng.gen();
 
-    let handler = move |_: MpcRequest| -> Result<(Circuit, Vec<bool>), String> {
+    let handler = move |r: MpcRequest| -> Result<(Circuit, Vec<bool>), String> {
+        if r.program != wordle_source_code {
+            return Err(format!(
+                "server: '{}', client: '{}'",
+                wordle_source_code, r.program
+            ));
+        }
         let current_date = Utc::today();
         let days_since_unix_epoch = current_date.num_days_from_ce();
 
