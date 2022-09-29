@@ -1,18 +1,19 @@
+import { GuessedChar } from '@/lib/localStorage'
 import { MAX_CHALLENGES } from '../../constants/settings'
 import { CompletedRow } from './CompletedRow'
 import { CurrentRow } from './CurrentRow'
 import { EmptyRow } from './EmptyRow'
 
 type Props = {
-  solution: string
-  guesses: string[]
+//   solution: string
+  guesses: GuessedWord[]
   currentGuess: string
   isRevealing?: boolean
   currentRowClassName: string
 }
 
 export const Grid = ({
-  solution,
+//   solution,
   guesses,
   currentGuess,
   isRevealing,

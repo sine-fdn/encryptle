@@ -37,6 +37,7 @@ import { useAlert } from './context/AlertContext'
 import { isInAppBrowser } from './lib/browser'
 import {
     getStoredIsHighContrastMode,
+    GuessedWord,
     loadGameStateFromLocalStorage,
     saveGameStateToLocalStorage,
     setStoredIsHighContrastMode,
@@ -46,7 +47,6 @@ import {
     findFirstUnusedReveal,
     getGameDate,
     getIsLatestGame,
-    isWinningWord,
     isWordInWordList,
     setGameDate,
     solution,
@@ -54,8 +54,7 @@ import {
     unicodeLength,
 } from './lib/words'
 import init, { MpcData, MpcProgram, compute } from './pkg/m1_http_client'
-
-// import * as mpc from "./pkg/m1_http_client";
+import { getToday } from './lib/dateutils'
 
 localStorage.clear()
 
@@ -121,12 +120,12 @@ function App() {
         getStoredIsHighContrastMode()
     )
     const [isRevealing, setIsRevealing] = useState(false)
-    const [guesses, setGuesses] = useState<string[]>(() => {
-        const loaded = loadGameStateFromLocalStorage(isLatestGame)
-        if (loaded?.solution !== solution) {
+    const [guesses, setGuesses] = useState<GuessedWord[]>(() => {
+        const loaded = loadGameStateFromLocalStorage(isLatestGame);
+        if (loaded?.date !== getToday()) {
             return []
         }
-        const gameWasWon = loaded.guesses.includes(solution)
+        const gameWasWon = loaded.wasWon
         if (gameWasWon) {
             setIsGameWon(true)
         }
@@ -204,8 +203,8 @@ function App() {
     }
 
     useEffect(() => {
-        saveGameStateToLocalStorage(getIsLatestGame(), { guesses, solution })
-    }, [guesses])
+        saveGameStateToLocalStorage(getIsLatestGame(), { guesses, date: getToday(), wasWon: isGameWon })
+    }, [guesses, isGameWon])
 
     useEffect(() => {
         if (isGameWon) {
@@ -279,17 +278,18 @@ function App() {
             setIsRevealing(false)
         }, REVEAL_TIME_MS * solution.length)
 
-        const winningWord = await checkGuess(currentGuess)
 
         if (
             unicodeLength(currentGuess) === solution.length &&
             guesses.length < MAX_CHALLENGES &&
             !isGameWon
         ) {
-            setGuesses([...guesses, currentGuess])
+            const [isWon, checkedGuess] = await checkGuess(currentGuess)
+
+            setGuesses([...guesses, checkedGuess])
             setCurrentGuess('')
 
-            if (winningWord) {
+            if (isWon) {
                 if (isLatestGame) {
                     setStats(addStatsForCompletedGame(stats, guesses.length))
                 }
@@ -331,7 +331,7 @@ function App() {
                 <div className="mx-auto flex w-full grow flex-col px-1 pt-2 pb-8 sm:px-6 md:max-w-7xl lg:px-8 short:pb-2 short:pt-2">
                     <div className="flex grow flex-col justify-center pb-6 short:pb-2">
                         <Grid
-                            solution={solution}
+                            // solution={solution}
                             guesses={guesses}
                             currentGuess={currentGuess}
                             isRevealing={isRevealing}
@@ -342,7 +342,7 @@ function App() {
                         onChar={onChar}
                         onDelete={onDelete}
                         onEnter={onEnter}
-                        solution={solution}
+                        // solution={solution}
                         guesses={guesses}
                         isRevealing={isRevealing}
                     />
@@ -353,7 +353,7 @@ function App() {
                     <StatsModal
                         isOpen={isStatsModalOpen}
                         handleClose={() => setIsStatsModalOpen(false)}
-                        solution={solution}
+                        // solution={solution}
                         guesses={guesses}
                         gameStats={stats}
                         isLatestGame={isLatestGame}
@@ -415,7 +415,7 @@ function word_to_literal(word: string) {
     return { Array: chars }
 }
 
-async function checkGuess(guess: string): Promise<boolean> {
+async function checkGuess(guess: string): Promise<[boolean, GuessedWord]> {
     await init()
 
     console.log('Ready for running Multi-Party Computation from WASM...')
@@ -427,10 +427,34 @@ async function checkGuess(guess: string): Promise<boolean> {
     console.log(mpc_input.to_literal())
     const url = 'http://127.0.0.1:8000'
 
-    const result = (await compute(url, "", mpc_program, mpc_input)).to_literal_string()
+    const result = (await compute(url, "", mpc_program, mpc_input)).to_literal()
 
     console.log(result)
-    return !result.includes("Wrong")
+
+    const r = [
+        {
+            char: "a",
+            mpcResult: "wrong",
+        },
+        {
+            char: "l",
+            mpcResult: "wrong",
+        },
+        {
+            char: "i",
+            mpcResult: "wrong",
+        },
+        {
+            char: "e",
+            mpcResult: "correct",
+        },
+        {
+            char: "n",
+            mpcResult: "wrongPosition",
+        }
+    ] as GuessedWord;
+
+    return [false, r]
 }
 
 export default App

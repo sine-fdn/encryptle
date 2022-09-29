@@ -1,3 +1,4 @@
+import { GuessedChar } from '@/lib/localStorage'
 import { useEffect } from 'react'
 
 import { DELETE_TEXT, ENTER_TEXT } from '../../constants/strings'
@@ -9,8 +10,8 @@ type Props = {
   onChar: (value: string) => void
   onDelete: () => void
   onEnter: () => void
-  solution: string
-  guesses: string[]
+//   solution: string
+  guesses: GuessedWord[]
   isRevealing?: boolean
 }
 
@@ -18,7 +19,7 @@ export const Keyboard = ({
   onChar,
   onDelete,
   onEnter,
-  solution,
+//   solution,
   guesses,
   isRevealing,
 }: Props) => {

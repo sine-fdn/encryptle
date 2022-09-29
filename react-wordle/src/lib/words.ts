@@ -13,6 +13,7 @@ import { NOT_CONTAINED_MESSAGE, WRONG_SPOT_MESSAGE } from '../constants/strings'
 import { VALID_GUESSES } from '../constants/validGuesses'
 import { WORDS } from '../constants/wordlist'
 import { getToday } from './dateutils'
+import { GuessedWord } from './localStorage'
 import { getGuessStatuses } from './statuses'
 
 // 1 January 2022 Game Epoch
@@ -33,7 +34,7 @@ export const isWinningWord = (word: string) => {
 // build a set of previously revealed letters - present and correct
 // guess must use correct letters in that space and any other revealed letters
 // also check if all revealed instances of a letter are used (i.e. two C's)
-export const findFirstUnusedReveal = (word: string, guesses: string[]) => {
+export const findFirstUnusedReveal = (word: string, guesses: GuessedWord[]) => {
   if (guesses.length === 0) {
     return false
   }
