@@ -11,6 +11,7 @@
   --absent-cell-bg-color: theme('colors.slate.400');
   --correct-cell-bg-color: theme('colors.green.400');
   --present-cell-bg-color: theme('colors.yellow.400');
+  --fade-out-opacity: 10%;
 }
 
 .dark {
@@ -37,15 +38,15 @@
 }
 
 .cell-reveal.absent {
-  animation-name: revealAbsentCharCell;
+  animation-name: fade-in, revealAbsentCharCell;
 }
 
 .cell-reveal.correct {
-  animation-name: revealCorrectCharCell;
+  animation-name: fade-in, revealCorrectCharCell;
 }
 
 .cell-reveal.present {
-  animation-name: revealPresentCharCell;
+  animation-name: fade-in, revealPresentCharCell;
 }
 
 .cell-reveal > .letter-container {
@@ -64,6 +65,13 @@ svg.cursor-pointer:hover {
 .jiggle {
   animation: jiggle linear;
   animation-duration: var(--animation-speed-fast);
+}
+
+.checking {
+  /* animation: checking infinite;
+  animation-duration: var(--animation-speed); */
+  transition: opacity var(--animation-speed);
+  opacity: var(--fade-out-opacity);
 }
 
 .navbar {
@@ -166,6 +174,18 @@ svg.cursor-pointer:hover {
   100% {
     transform: scale(1);
   }
+}
+
+@keyframes fade-in {
+ 0% {
+    opacity: var(--fade-out-opacity)
+ }
+ 20% {
+    opacity: 100%
+ }
+ 100% {
+    opacity: 100%
+ }
 }
 
 .shadowed {

@@ -276,7 +276,11 @@ function App() {
             guesses.length < MAX_CHALLENGES &&
             !isGameWon
         ) {
+            setCurrentRowClass('checking');
+
             const [isWon, checkedGuess] = await checkGuess(currentGuess)
+
+            clearCurrentRowClass();
 
             setIsRevealing(true)
             // turn this back off after all

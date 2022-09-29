@@ -2,8 +2,8 @@ import { solution, unicodeSplit } from '../../lib/words'
 import { Cell } from './Cell'
 
 type Props = {
-  guess: string
-  className: string
+  guess: string,
+  className: string,
 }
 
 export const CurrentRow = ({ guess, className }: Props) => {
