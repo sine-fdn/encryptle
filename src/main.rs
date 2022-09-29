@@ -27,10 +27,10 @@ fn rocket() -> _ {
             let server_program = wordle_source_code.chars();
 
             let mut differences = zip(client_program, server_program);
-            let difference_index = differences.position(|(a, b)| a != b).unwrap();
-            let difference = differences.find(|(a, b)| a != b).unwrap();
+            let chars_index = differences.position(|(a, b)| a != b).unwrap();
+            let (client_char, server_char) = differences.find(|(a, b)| a != b).unwrap();
 
-            return Err(format!("Client and server programs differ at character {:?}: {:?}, respectively.", difference_index, difference))
+            return Err(format!("Client and server programs differ at character {:?}. Client's character: {:?}; server's character: {:?}.", chars_index, client_char, server_char));
 
         }
 
