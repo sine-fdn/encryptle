@@ -1,5 +1,3 @@
-use std::iter::zip;
-
 use chrono::Datelike;
 use chrono::Utc;
 use m1::Circuit;
@@ -7,6 +5,7 @@ use m1_garble_interop::{check_program, compile_program, serialize_input, Role};
 use m1_http_server::{build, MpcRequest};
 use rand::prelude::*;
 use rand::SeedableRng;
+use std::iter::zip;
 
 #[macro_use]
 extern crate rocket;
@@ -14,24 +13,32 @@ extern crate rocket;
 #[launch]
 fn rocket() -> _ {
     let words: Vec<&str> = include_str!("words.txt").trim().split('\n').collect();
-    let wordle_source_code = include_str!("wordle.garble.rs").trim();
-    let prg = check_program(wordle_source_code).unwrap();
+    let wordle_code = include_str!("wordle.garble.rs").trim();
+    let prg = check_program(wordle_code).unwrap();
     let circuit = compile_program(&prg, &"wordle").unwrap();
 
     let mut nonce_rng = StdRng::from_entropy();
     let nonce: u64 = nonce_rng.gen();
 
     let handler = move |r: MpcRequest| -> Result<(Circuit, Vec<bool>), String> {
-        if r.program != wordle_source_code {
-            let client_program = r.program.chars();
-            let server_program = wordle_source_code.chars();
+        let client_program = r.program.chars();
+        let server_program = wordle_code.chars();
+        let mut differences = zip(client_program, server_program);
+        let mismatch_index = differences.position(|(a, b)| a != b);
 
-            let mut differences = zip(client_program, server_program);
-            let chars_index = differences.position(|(a, b)| a != b).unwrap();
-            let (client_char, server_char) = differences.find(|(a, b)| a != b).unwrap();
+        if let Some(mismatch_index) = mismatch_index {
+            fn extract_snippet(code: &str, index: usize) -> String {
+                let snippet: String = code.chars().skip(index).take(10).collect();
+                let snippet = snippet.replace("\\", "\\\\").replace("\n", "\\n");
+                format!("'{snippet}...'")
+            }
 
-            return Err(format!("Client and server programs differ at character {:?}. Client's character: {:?}; server's character: {:?}.", chars_index, client_char, server_char));
+            let client = extract_snippet(&r.program, mismatch_index);
+            let server = extract_snippet(wordle_code, mismatch_index);
 
+            return Err(format!(
+                "Programs differ at character {mismatch_index}: {client}, {server}"
+            ));
         }
 
         let current_date = Utc::today();
