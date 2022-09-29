@@ -37,6 +37,7 @@ import { useAlert } from './context/AlertContext'
 import { isInAppBrowser } from './lib/browser'
 import {
     getStoredIsHighContrastMode,
+    GuessedChar,
     GuessedWord,
     loadGameStateFromLocalStorage,
     saveGameStateToLocalStorage,
@@ -418,43 +419,36 @@ function word_to_literal(word: string) {
 async function checkGuess(guess: string): Promise<[boolean, GuessedWord]> {
     await init()
 
-    console.log('Ready for running Multi-Party Computation from WASM...')
     const mpc_program = new MpcProgram(source_code, 'wordle')
-    console.log(mpc_program.report_gates())
 
     const mpc_input = MpcData.from_object(mpc_program, word_to_literal(guess))
-    console.log(mpc_input.to_literal_string())
-    console.log(mpc_input.to_literal())
+
     const url = 'http://127.0.0.1:8000'
 
-    const result = (await compute(url, "", mpc_program, mpc_input)).to_literal()
+    const { Array: guessedChars } = (await compute(url, "", mpc_program, mpc_input)).to_literal()
 
-    console.log(result)
+    let isWon = true;
 
-    const r = [
-        {
-            char: "a",
-            mpcResult: "wrong",
-        },
-        {
-            char: "l",
-            mpcResult: "wrong",
-        },
-        {
-            char: "i",
-            mpcResult: "wrong",
-        },
-        {
-            char: "e",
-            mpcResult: "correct",
-        },
-        {
-            char: "n",
-            mpcResult: "wrongPosition",
+    const r = guessedChars.map(({ Enum: [_enum, mpcResult, _char] }: any, i: number) => {
+        let result;
+
+        if (mpcResult === "Correct") {
+            result = "correct"
+        } else if (mpcResult === "WrongPosition") {
+            result = "wrongPosition"
+            isWon = false
+        } else {
+            result = "wrong"
+            isWon = false
         }
-    ] as GuessedWord;
 
-    return [false, r]
+        return {
+            char: guess[i],
+            mpcResult: result
+        }
+    }) as GuessedWord
+
+    return [isWon, r]
 }
 
 export default App

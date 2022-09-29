@@ -1,79 +1,46 @@
+import { GuessedWord } from './localStorage'
 import { unicodeSplit } from './words'
 
 export type CharStatus = 'absent' | 'present' | 'correct'
 
 export const getStatuses = (
-  solution: string,
-  guesses: string[]
+    guesses: GuessedWord[]
 ): { [key: string]: CharStatus } => {
-  const charObj: { [key: string]: CharStatus } = {}
-  const splitSolution = unicodeSplit(solution)
+    const charObj: { [key: string]: CharStatus } = {}
 
-  guesses.forEach((word) => {
-    unicodeSplit(word).forEach((letter, i) => {
-      if (!splitSolution.includes(letter)) {
-        // make status absent
-        return (charObj[letter] = 'absent')
-      }
+    guesses.forEach((word) => {
+        word.forEach((guessedChar) => {
+            if (guessedChar.mpcResult === "wrong") {
+                // make status absent
+                return (charObj[guessedChar.char] = 'absent')
+            }
 
-      if (letter === splitSolution[i]) {
-        //make status correct
-        return (charObj[letter] = 'correct')
-      }
+            if (guessedChar.mpcResult === "correct") {
+                //make status correct
+                return (charObj[guessedChar.char] = 'correct')
+            }
 
-      if (charObj[letter] !== 'correct') {
-        //make status present
-        return (charObj[letter] = 'present')
-      }
+            if (guessedChar.mpcResult === "wrongPosition") {
+                //make status present
+                return (charObj[guessedChar.char] = 'present')
+            }
+        })
     })
-  })
 
-  return charObj
+    return charObj
 }
 
 export const getGuessStatuses = (
-  solution: string,
-  guess: string
+    guess: GuessedWord
 ): CharStatus[] => {
-  const splitSolution = unicodeSplit(solution)
-  const splitGuess = unicodeSplit(guess)
-
-  const solutionCharsTaken = splitSolution.map((_) => false)
-
-  const statuses: CharStatus[] = Array.from(Array(guess.length))
-
-  // handle all correct cases first
-  splitGuess.forEach((letter, i) => {
-    if (letter === splitSolution[i]) {
-      statuses[i] = 'correct'
-      solutionCharsTaken[i] = true
-      return
-    }
-  })
-
-  splitGuess.forEach((letter, i) => {
-    if (statuses[i]) return
-
-    if (!splitSolution.includes(letter)) {
-      // handles the absent case
-      statuses[i] = 'absent'
-      return
-    }
-
-    // now we are left with "present"s
-    const indexOfPresentChar = splitSolution.findIndex(
-      (x, index) => x === letter && !solutionCharsTaken[index]
-    )
-
-    if (indexOfPresentChar > -1) {
-      statuses[i] = 'present'
-      solutionCharsTaken[indexOfPresentChar] = true
-      return
-    } else {
-      statuses[i] = 'absent'
-      return
-    }
-  })
-
-  return statuses
+    return guess.map((guessedChar) => {
+        switch (guessedChar.mpcResult) {
+            case "correct":
+                return 'correct' as CharStatus
+            case "wrongPosition":
+                return 'present' as CharStatus
+            default:
+                return 'absent' as CharStatus
+        }
+    })
 }

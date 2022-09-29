@@ -1,4 +1,4 @@
-import { GuessedChar } from '@/lib/localStorage'
+import { GuessedWord } from '@/lib/localStorage'
 import { useEffect } from 'react'
 
 import { DELETE_TEXT, ENTER_TEXT } from '../../constants/strings'
@@ -23,7 +23,7 @@ export const Keyboard = ({
   guesses,
   isRevealing,
 }: Props) => {
-  const charStatuses = getStatuses(solution, guesses)
+  const charStatuses = getStatuses(guesses)
 
   const onClick = (value: string) => {
     if (value === 'ENTER') {

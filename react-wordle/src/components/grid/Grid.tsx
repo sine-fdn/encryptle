@@ -1,4 +1,4 @@
-import { GuessedChar } from '@/lib/localStorage'
+import { GuessedWord } from '@/lib/localStorage'
 import { MAX_CHALLENGES } from '../../constants/settings'
 import { CompletedRow } from './CompletedRow'
 import { CurrentRow } from './CurrentRow'
@@ -29,7 +29,6 @@ export const Grid = ({
       {guesses.map((guess, i) => (
         <CompletedRow
           key={i}
-          solution={solution}
           guess={guess}
           isRevealing={isRevealing && guesses.length - 1 === i}
         />
