@@ -69,11 +69,11 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
                         rel="noreferrer"
                         className="font-bold underline"
                     >
-                        SINE's MPC engine
+                        SINE's Multiparty Computation (MPC) engine
                     </a>.
                     It is privacy preserving because the server has no access to the user's guesses,
-                    just as the user has no access to the secret word.
-                    The MPC runs after each guess, taking a few seconds to output a response.
+                    just as the user has no access to the secret word (except by solving it).
+                    The MPC engine runs after each guess, taking a few seconds to output a response.
                     The letters in your guess will become transparent while the MPC engine is running.
                     Please be patient!
                 </p>
