@@ -68,8 +68,6 @@ svg.cursor-pointer:hover {
 }
 
 .checking {
-  /* animation: checking infinite;
-  animation-duration: var(--animation-speed); */
   transition: opacity var(--animation-speed);
   opacity: var(--fade-out-opacity);
 }

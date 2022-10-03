@@ -7,6 +7,7 @@ import {
 
 import { ENABLE_ARCHIVED_GAMES } from '../../constants/settings'
 import { GAME_TITLE } from '../../constants/strings'
+import { GAME_DESCRIPTION } from '../../constants/strings'
 
 type Props = {
   setIsInfoModalOpen: (value: boolean) => void
@@ -23,7 +24,7 @@ export const Navbar = ({
 }: Props) => {
   return (
     <div className="navbar">
-      <div className="navbar-content px-5 short:h-auto">
+      <div className="navbar-content px-5 py-8">
         <div className="flex">
           <InformationCircleIcon
             className="h-6 w-6 cursor-pointer dark:stroke-white"
@@ -36,7 +37,10 @@ export const Navbar = ({
             />
           )}
         </div>
-        <p className="text-xl font-bold dark:text-white">{GAME_TITLE}</p>
+        <div className="text-center">
+          <p className="text-xl font-bold dark:text-white pl-9">{GAME_TITLE}</p>
+          <p className="text-sm dark:text-white pl-9">{GAME_DESCRIPTION}</p>
+        </div>
         <div className="right-icons">
           <ChartBarIcon
             className="mr-3 h-6 w-6 cursor-pointer dark:stroke-white"

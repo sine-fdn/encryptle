@@ -1,5 +1,4 @@
 import { GuessedWord } from './localStorage'
-import { unicodeSplit } from './words'
 
 export type CharStatus = 'absent' | 'present' | 'correct'
 

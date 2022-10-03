@@ -1,6 +1,6 @@
 {
-  "short_name": "Reactle",
-  "name": "Reactle",
+  "short_name": "MPC Wordle",
+  "name": "Sine's privacy preserving Wordle",
   "icons": [
     {
       "src": "favicon.ico",
