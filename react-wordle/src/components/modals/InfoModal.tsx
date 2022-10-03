@@ -69,7 +69,7 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
                         rel="noreferrer"
                         className="font-bold underline"
                     >
-                        SINE's Multiparty Computation (MPC) engine
+                        SINE's Multi-Party Computation (MPC) engine
                     </a>.
                     It is privacy preserving because the server has no access to the user's guesses,
                     just as the user has no access to the secret word (except by solving it).
