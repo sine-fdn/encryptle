@@ -1,11 +1,12 @@
 use chrono::Datelike;
 use chrono::Utc;
+use dotenv::dotenv;
 use m1::Circuit;
 use m1_garble_interop::{check_program, compile_program, serialize_input, Role};
 use m1_http_server::{build, MpcRequest};
 use rand::prelude::*;
 use rand::SeedableRng;
-use std::iter::zip;
+use std::{env, iter::zip};
 
 #[macro_use]
 extern crate rocket;
@@ -17,8 +18,40 @@ fn rocket() -> _ {
     let prg = check_program(wordle_code).unwrap();
     let circuit = compile_program(&prg, &"wordle").unwrap();
 
-    let mut nonce_rng = StdRng::from_entropy();
+    dotenv().ok();
+
+    let env_seed = env::var("RNG_SEED");
+
+    let mut nonce_rng = if env_seed.is_ok() && env_seed.unwrap().chars().count() == 64 {
+
+        let env_seed = env::var("RNG_SEED").unwrap();
+
+        let mut split_seed = vec![];
+
+        // Divides string into couples of characters, each being na hexadecimal number
+        for i in 0..64 {
+            if i % 2 == 0 {
+                split_seed.push(&env_seed[i..i + 2])
+            }
+        }
+
+        let mut rng_seed = [0; 32];
+
+        // Sets the value of each element of rng_seed to the u8 that results from converting hexadecimal numbers
+        for i in 0..32 {
+            rng_seed[i] = u8::from_str_radix(&split_seed[i], 16).unwrap();
+        }
+
+        // Initializes RNG from environment variable
+        StdRng::from_seed(rng_seed)
+    } else {
+        // Initialize RNG from entropy
+        StdRng::from_entropy()
+    };
+
     let nonce: u64 = nonce_rng.gen();
+
+    println!("{nonce}");
 
     let handler = move |r: MpcRequest| -> Result<(Circuit, Vec<bool>), String> {
         let client_program = r.program.chars();

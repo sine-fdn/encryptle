@@ -21,5 +21,6 @@
       "@/public/*": ["./public/*"]
     }
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["./src/pkg/*"]
 }
