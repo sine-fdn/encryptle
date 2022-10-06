@@ -1,4 +1,4 @@
-pub fn wordle(secret_word: [u8; 5], guess: [u8; 5]) -> [Guess; 5] {
+export const wordle_code: string = `pub fn wordle(secret_word: [u8; 5], guess: [u8; 5]) -> [Guess; 5] {
     let mut intermediate_score = [Guess::Wrong(0u8); 5];
 
     for i in 0usize..5usize {
@@ -38,3 +38,6 @@ fn is_present(secret_word: [u8; 5], guess: [u8; 5], i: usize) -> bool {
 
     char_occurrences_in_secret_word >= nth_occurrence_in_guess
 }
+`
+
+export default wordle_code;

@@ -14,8 +14,14 @@ extern crate rocket;
 #[launch]
 fn rocket() -> _ {
     let words: Vec<&str> = include_str!("words.txt").trim().split('\n').collect();
-    let wordle_code = include_str!("wordle.garble.rs").trim();
-    let prg = check_program(wordle_code).unwrap();
+    // let wordle_code = include_str!("wordle.garble.rs").trim();
+    let wordle_ts = include_str!("../../react-wordle/src/garble/wordle_code.ts");
+
+    let wordle_code = wordle_ts
+        .replace("export const wordle_code: string = `", "")
+        .replace("`\n\nexport default wordle_code;", "");
+
+    let prg = check_program(&wordle_code).unwrap();
     let circuit = compile_program(&prg, &"wordle").unwrap();
 
     dotenv().ok();
@@ -23,7 +29,6 @@ fn rocket() -> _ {
     let env_seed = env::var("RNG_SEED");
 
     let mut nonce_rng = if env_seed.is_ok() && env_seed.unwrap().chars().count() == 64 {
-
         let env_seed = env::var("RNG_SEED").unwrap();
 
         let mut split_seed = vec![];
@@ -67,7 +72,7 @@ fn rocket() -> _ {
             }
 
             let client = extract_snippet(&r.program, mismatch_index);
-            let server = extract_snippet(wordle_code, mismatch_index);
+            let server = extract_snippet(&wordle_code, mismatch_index);
 
             return Err(format!(
                 "Programs differ at character {mismatch_index}: {client}, {server}"
