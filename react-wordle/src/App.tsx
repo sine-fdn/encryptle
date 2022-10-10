@@ -55,8 +55,6 @@ import init, { MpcData, MpcProgram, compute } from './pkg/m1_http_client'
 import { getToday } from './lib/dateutils'
 import wordle_code from './garble/wordle_code'
 
-localStorage.clear()
-
 const SOLUTION_LENGTH = 5;
 
 function App() {
