@@ -14,12 +14,14 @@ extern crate rocket;
 #[launch]
 fn rocket() -> _ {
     let words: Vec<&str> = include_str!("words.txt").trim().split('\n').collect();
-    // let wordle_code = include_str!("wordle.garble.rs").trim();
+
     let wordle_ts = include_str!("../../react-wordle/src/garble/wordle_code.ts");
 
-    let wordle_code = wordle_ts
-        .replace("export const wordle_code: string = `", "")
-        .replace("`\n\nexport default wordle_code;", "");
+    // Isolates the Garble source code from the TS syntax
+    let wordle_code: Vec<&str> = wordle_ts.split("`").collect();
+
+    // Stores the Garble code
+    let wordle_code = wordle_code[1];
 
     let prg = check_program(&wordle_code).unwrap();
     let circuit = compile_program(&prg, &"wordle").unwrap();
