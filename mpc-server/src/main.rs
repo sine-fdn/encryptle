@@ -5,7 +5,7 @@ use m1_garble_interop::{check_program, compile_program, serialize_input, Role};
 use m1_http_server::{build, MpcRequest};
 use rand::prelude::*;
 use rand::SeedableRng;
-use std::{env, iter::zip};
+use std::{env, fmt::Write, iter::zip};
 
 #[macro_use]
 extern crate rocket;
@@ -16,10 +16,10 @@ fn rocket() -> _ {
 
     let wordle_ts = include_str!("../../react-wordle/src/garble/wordle_code.ts");
 
-    let wordle_code = wordle_ts.split("`").collect::<Vec<_>>()[1];
+    let wordle_code = wordle_ts.split('`').collect::<Vec<_>>()[1];
 
-    let prg = check_program(&wordle_code).unwrap();
-    let circuit = compile_program(&prg, &"wordle").unwrap();
+    let prg = check_program(wordle_code).unwrap();
+    let circuit = compile_program(&prg, "wordle").unwrap();
 
     let mut nonce_rng = seed_rng();
 
@@ -36,12 +36,12 @@ fn rocket() -> _ {
         if let Some(mismatch_index) = mismatch_index {
             fn extract_snippet(code: &str, index: usize) -> String {
                 let snippet: String = code.chars().skip(index).take(10).collect();
-                let snippet = snippet.replace("\\", "\\\\").replace("\n", "\\n");
+                let snippet = snippet.replace('\\', "\\\\").replace('\n', "\\n");
                 format!("'{snippet}...'")
             }
 
             let client = extract_snippet(&r.program, mismatch_index);
-            let server = extract_snippet(&wordle_code, mismatch_index);
+            let server = extract_snippet(wordle_code, mismatch_index);
 
             return Err(format!(
                 "Programs differ at character {mismatch_index}: {client}, {server}"
@@ -99,9 +99,9 @@ fn word_as_garble_literal(word: &str) -> String {
     let mut input_as_garble_literal = "[".to_string();
     for (i, char) in input_as_ascii.iter().enumerate() {
         if i == 0 {
-            input_as_garble_literal += &format!("{char}u8");
+            write!(input_as_garble_literal, "{char}u8").unwrap();
         } else {
-            input_as_garble_literal += &format!(", {char}u8");
+            write!(input_as_garble_literal, ", {char}u8").unwrap();
         }
     }
     input_as_garble_literal += "]";
