@@ -1,6 +1,5 @@
 use chrono::Datelike;
 use chrono::Utc;
-use dotenv::dotenv;
 use m1::Circuit;
 use m1_garble_interop::{check_program, compile_program, serialize_input, Role};
 use m1_http_server::{build, MpcRequest};
@@ -13,48 +12,16 @@ extern crate rocket;
 
 #[launch]
 fn rocket() -> _ {
-    let words: Vec<&str> = include_str!("words.txt").trim().split('\n').collect();
+    let words: Vec<_> = include_str!("words.txt").trim().split('\n').collect();
 
     let wordle_ts = include_str!("../../react-wordle/src/garble/wordle_code.ts");
 
-    // Isolates the Garble source code from the TS syntax
-    let wordle_code: Vec<&str> = wordle_ts.split("`").collect();
-
-    // Stores the Garble code
-    let wordle_code = wordle_code[1];
+    let wordle_code = wordle_ts.split("`").collect::<Vec<_>>()[1];
 
     let prg = check_program(&wordle_code).unwrap();
     let circuit = compile_program(&prg, &"wordle").unwrap();
 
-    dotenv().ok();
-
-    let env_seed = env::var("RNG_SEED");
-
-    let mut nonce_rng = if env_seed.is_ok() && env_seed.unwrap().chars().count() == 64 {
-        let env_seed = env::var("RNG_SEED").unwrap();
-
-        let mut split_seed = vec![];
-
-        // Divides string into couples of characters, each being na hexadecimal number
-        for i in 0..64 {
-            if i % 2 == 0 {
-                split_seed.push(&env_seed[i..i + 2])
-            }
-        }
-
-        let mut rng_seed = [0; 32];
-
-        // Sets the value of each element of rng_seed to the u8 that results from converting hexadecimal numbers
-        for i in 0..32 {
-            rng_seed[i] = u8::from_str_radix(&split_seed[i], 16).unwrap();
-        }
-
-        // Initializes RNG from environment variable
-        StdRng::from_seed(rng_seed)
-    } else {
-        // Initialize RNG from entropy
-        StdRng::from_entropy()
-    };
+    let mut nonce_rng = seed_rng();
 
     let nonce: u64 = nonce_rng.gen();
 
@@ -93,6 +60,28 @@ fn rocket() -> _ {
     };
 
     build(Box::new(handler))
+}
+
+fn seed_rng() -> StdRng {
+    let env_seed = env::var("RNG_SEED");
+
+    match env_seed {
+        Ok(env_seed) if env_seed.chars().count() == 64 => {
+            let mut rng_seed = [0; 32];
+
+            for i in 0..32 {
+                // Divides string into pairs of characters, each pair being a hexadecimal number
+                let hex_pair = &env_seed[i * 2..i * 2 + 2];
+                if let Ok(byte) = u8::from_str_radix(hex_pair, 16) {
+                    rng_seed[i] = byte;
+                } else {
+                    return StdRng::from_entropy();
+                }
+            }
+            StdRng::from_seed(rng_seed)
+        }
+        _ => StdRng::from_entropy(),
+    }
 }
 
 fn word_as_garble_literal(word: &str) -> String {
