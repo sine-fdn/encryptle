@@ -23,8 +23,6 @@ fn rocket() -> _ {
 
     let nonce: u64 = nonce_rng.gen();
 
-    println!("{nonce}");
-
     let handler = move |r: MpcRequest| -> Result<(Circuit, Vec<bool>), String> {
         let client_program = r.program.chars();
         let server_program = wordle_code.chars();
@@ -57,6 +55,7 @@ fn rocket() -> _ {
         Ok((circuit.gates.clone(), input))
     };
 
+    println!("Starting MPC Wordle server...");
     build(Box::new(handler))
 }
 
@@ -76,6 +75,7 @@ fn seed_rng() -> StdRng {
                     return StdRng::from_entropy();
                 }
             }
+            println!("Initializing RNG using $RNG_SEED...");
             StdRng::from_seed(rng_seed)
         }
         _ => StdRng::from_entropy(),
@@ -84,9 +84,6 @@ fn seed_rng() -> StdRng {
 
 fn word_as_garble_literal(word: &str) -> String {
     let word = word.trim();
-    if word.len() != 5 {
-        panic!("A guess must have exactly 5 letters!");
-    }
     let input_as_ascii: Vec<u8> = word
         .to_lowercase()
         .chars()
