@@ -1,6 +1,5 @@
 use chrono::Datelike;
 use chrono::Utc;
-use dotenv::dotenv;
 use m1::Circuit;
 use m1_garble_interop::{check_program, compile_program, serialize_input, Role};
 use m1_http_server::{build, MpcRequest};
@@ -17,8 +16,6 @@ fn rocket() -> _ {
     let wordle_code = include_str!("wordle.garble.rs").trim();
     let prg = check_program(wordle_code).unwrap();
     let circuit = compile_program(&prg, &"wordle").unwrap();
-
-    dotenv().ok();
 
     let env_seed = env::var("RNG_SEED");
 
