@@ -34,7 +34,6 @@ fn is_present(secret_word: [u8; 5], guess: [u8; 5], i: usize) -> bool {
         if j <= i && guess[j] == character && !is_correct {
             nth_occurrence_in_guess = nth_occurrence_in_guess + 1u8;
         }
-
-        char_occurrences_in_secret_word >= nth_occurrence_in_guess
     }
+    char_occurrences_in_secret_word >= nth_occurrence_in_guess
 }
