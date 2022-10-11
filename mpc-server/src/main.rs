@@ -14,9 +14,7 @@ extern crate rocket;
 fn rocket() -> _ {
     let words: Vec<_> = include_str!("words.txt").trim().split('\n').collect();
 
-    let wordle_ts = include_str!("../../react-wordle/src/garble/wordle_code.ts");
-
-    let wordle_code = wordle_ts.split('`').collect::<Vec<_>>()[1];
+    let wordle_code = include_str!("../garble/wordle.garble.rs");
 
     let prg = check_program(wordle_code).unwrap();
     let circuit = compile_program(&prg, "wordle").unwrap();
