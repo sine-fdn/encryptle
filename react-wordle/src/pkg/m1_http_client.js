@@ -1,9 +1,3 @@
-/* eslint-disable no-new-object */
-/* eslint-disable no-undef */
-/* eslint-disable no-restricted-globals */
-/* eslint-disable no-new-func */
-/* eslint-disable eqeqeq */
-
 let wasm;
 
 const cachedTextDecoder = new TextDecoder('utf-8', { ignoreBOM: true, fatal: true });
