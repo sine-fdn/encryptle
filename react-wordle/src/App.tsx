@@ -391,7 +391,8 @@ async function checkGuess(guess: string): Promise<[boolean, GuessedWord]> {
 
     const mpc_input = MpcData.from_object(mpc_program, word_to_literal(guess))
 
-    const url = 'http://localhost:8000'
+    //const url = 'http://localhost:8000'
+    const url = 'https://mpc-wordle-backend.fly.dev:8000/'
 
     const { Array: guessedChars } = (await compute(url, "", mpc_program, mpc_input)).to_literal()
 

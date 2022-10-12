@@ -16,7 +16,6 @@ COPY docker/build_system.sh .
 RUN ./build_system.sh && rm ./build_system.sh
 # port use by Nginx within docker network.
 EXPOSE 8080
-USER reactle
 
 ## Development image
 FROM node_modules AS dev
