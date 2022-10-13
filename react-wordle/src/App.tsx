@@ -394,9 +394,9 @@ async function checkGuess(guess: string): Promise<[boolean, GuessedWord]> {
     let url;
 
     if (process.env.NODE_ENV === 'development') {
-        url = 'http://localhost:8000'
+        url = 'http://mpc-wordle-backend.czaxdweharcudsaq.germanywestcentral.azurecontainer.io:8000'
     } else {
-        url = 'https://mpc-wordle-backend.fly.dev:8000/'
+        url = 'http://mpc-wordle-backend.czaxdweharcudsaq.germanywestcentral.azurecontainer.io:8000'
     }
 
     const { Array: guessedChars } = (await compute(url, "", mpc_program, mpc_input)).to_literal()
