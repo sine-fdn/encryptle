@@ -24,7 +24,7 @@ import {
     WELCOME_INFO_MODAL_MS,
 } from './constants/settings'
 import {
-    CORRECT_WORD_MESSAGE,
+    LOST_GAME_MESSAGE,
     DISCOURAGE_INAPP_BROWSER_TEXT,
     GAME_COPIED_MESSAGE,
     HARD_MODE_ALERT_MESSAGE,
@@ -88,7 +88,9 @@ function App() {
     const [isRevealing, setIsRevealing] = useState(false)
     const [guesses, setGuesses] = useState<GuessedWord[]>(() => {
         const loaded = loadGameStateFromLocalStorage(isLatestGame);
-        if (loaded?.date !== getToday()) {
+        const today = JSON.stringify(getToday()).replace(/"/g, "")
+
+        if (loaded?.date.toString() !== today) {
             return []
         }
         const gameWasWon = loaded.wasWon
@@ -97,7 +99,7 @@ function App() {
         }
         if (loaded.guesses.length === MAX_CHALLENGES && !gameWasWon) {
             setIsGameLost(true)
-            showErrorAlert(CORRECT_WORD_MESSAGE, {
+            showErrorAlert(LOST_GAME_MESSAGE, {
                 persist: true,
             })
         }
@@ -270,7 +272,7 @@ function App() {
                     setStats(addStatsForCompletedGame(stats, guesses.length + 1))
                 }
                 setIsGameLost(true)
-                showErrorAlert(CORRECT_WORD_MESSAGE, {
+                showErrorAlert(LOST_GAME_MESSAGE, {
                     persist: true,
                     delayMs: REVEAL_TIME_MS * SOLUTION_LENGTH + 1,
                 })
