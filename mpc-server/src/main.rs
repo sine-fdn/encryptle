@@ -2,9 +2,11 @@ use chrono::Datelike;
 use chrono::Utc;
 use m1::Circuit;
 use m1_garble_interop::{check_program, compile_program, serialize_input, Role};
+use m1_http_server::HandledRequest;
 use m1_http_server::{build, MpcRequest};
 use rand::prelude::*;
 use rand::SeedableRng;
+use std::collections::HashMap;
 use std::{env, fmt::Write, iter::zip};
 
 #[macro_use]
@@ -23,7 +25,7 @@ fn rocket() -> _ {
 
     let nonce: u64 = nonce_rng.gen();
 
-    let handler = move |r: MpcRequest| -> Result<(Circuit, Vec<bool>), String> {
+    let handler = move |r: MpcRequest| -> Result<HandledRequest, String> {
         let client_program = r.program.chars();
         let server_program = wordle_code.chars();
         let mut differences = zip(client_program, server_program);
@@ -52,7 +54,16 @@ fn rocket() -> _ {
 
         let input = word_as_garble_literal(words[random_choice]);
         let input = serialize_input(Role::Contributor, &prg, &circuit.fn_def, &input)?;
-        Ok((circuit.gates.clone(), input))
+        let mut request_headers = HashMap::new();
+        if let Ok(fly_alloc_id) = env::var("FLY_ALLOC_ID") {
+            let fly_instance_id = fly_alloc_id.split("-").collect::<Vec<_>>()[0].to_string();
+            request_headers.insert("fly-force-instance-id".to_string(), fly_instance_id);
+        }
+        Ok(HandledRequest {
+            circuit: circuit.gates.clone(),
+            input_from_server: input,
+            request_headers,
+        })
     };
 
     println!("Starting MPC Wordle server...");
