@@ -83,11 +83,16 @@ fn seed_rng() -> StdRng {
                 if let Ok(byte) = u8::from_str_radix(hex_pair, 16) {
                     rng_seed[i] = byte;
                 } else {
+                    println!("Not a valid $RNG_SEED: {env_seed}");
                     return StdRng::from_entropy();
                 }
             }
             println!("Initializing RNG using $RNG_SEED...");
             StdRng::from_seed(rng_seed)
+        },
+        Ok(env_seed) => {
+            println!("Not a valid $RNG_SEED, must be 64 hex chars, but found: '{env_seed}'");
+            return StdRng::from_entropy();
         }
         _ => StdRng::from_entropy(),
     }
