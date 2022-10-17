@@ -78,7 +78,7 @@ svg.cursor-pointer:hover {
 
 .navbar-content {
   display: flex;
-  height: 3rem;
+  height: fit-content;
   align-items: center;
   justify-content: space-between;
 }
