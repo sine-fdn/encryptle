@@ -21,7 +21,7 @@ import {
     LONG_ALERT_TIME_MS,
     MAX_CHALLENGES,
     REVEAL_TIME_MS,
-    WELCOME_INFO_MODAL_MS,
+    // WELCOME_INFO_MODAL_MS,
 } from './constants/settings'
 import {
     LOST_GAME_MESSAGE,
@@ -68,7 +68,7 @@ function App() {
         useAlert()
     const [currentGuess, setCurrentGuess] = useState('')
     const [isGameWon, setIsGameWon] = useState(false)
-    const [isInfoModalOpen, setIsInfoModalOpen] = useState(false)
+    const [isInfoModalOpen, setIsInfoModalOpen] = useState(true)
     const [isStatsModalOpen, setIsStatsModalOpen] = useState(false)
     const [isDatePickerModalOpen, setIsDatePickerModalOpen] = useState(false)
     const [isMigrateStatsModalOpen, setIsMigrateStatsModalOpen] = useState(false)
@@ -114,15 +114,19 @@ function App() {
             : false
     )
 
-    useEffect(() => {
-        // if no game state on load,
-        // show the user the how-to info modal
-        if (!loadGameStateFromLocalStorage(true)) {
-            setTimeout(() => {
-                setIsInfoModalOpen(true)
-            }, WELCOME_INFO_MODAL_MS)
-        }
-    })
+    if (isGameWon && isInfoModalOpen) {
+        setIsInfoModalOpen(false)
+    }
+    // useEffect(() => {
+    //     // if no game state on load,
+    //     // show the user the how-to info modal
+
+    //     if (!loadGameStateFromLocalStorage(true)) {
+    //         setTimeout(() => {
+    //             setIsInfoModalOpen(true)
+    //         }, WELCOME_INFO_MODAL_MS)
+    //     }
+    // })
 
     useEffect(() => {
         DISCOURAGE_INAPP_BROWSERS &&
