@@ -25,20 +25,20 @@ export const Cell = ({
   const isHighContrast = getStoredIsHighContrastMode()
 
   const classes = classnames(
-    'xxshort:w-11 xxshort:h-11 short:text-2xl short:w-12 short:h-12 w-14 h-14 border-solid border-2 flex items-center justify-center mx-0.5 text-4xl font-bold rounded dark:text-white',
+    'xxshort:w-11 xxshort:h-11 short:text-2xl short:w-12 short:h-12 w-14 h-14 border-solid border flex items-center justify-center mx-0.5 text-4xl font-normal rounded',
     {
       'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-600':
         !status,
       'border-black dark:border-slate-100': value && !status,
-      'absent bg-slate-400 dark:bg-slate-700 text-white border-slate-400 dark:border-slate-700':
+      'absent bg-slate-300 dark:bg-slate-700 text-slate-700 border-slate-700 dark:border-white dark:text-white':
         status === 'absent',
-      'correct bg-orange-500 text-white border-orange-500':
+      'correct bg-orange-200 text-orange-700 border-slate-700':
         status === 'correct' && isHighContrast,
-      'present bg-cyan-500 text-white border-cyan-500':
+      'present bg-cyan-200 text-cyan-700 border-slate-700':
         status === 'present' && isHighContrast,
-      'correct bg-green-500 text-white border-green-500':
+      'correct bg-green-200 text-green-700 border-slate-700 dark:text-green-700 dark:border-white':
         status === 'correct' && !isHighContrast,
-      'present bg-yellow-500 text-white border-yellow-500':
+      'present bg-yellow-100 text-yellow-700 border-slate-700 dark:text-yellow-700 dark:border-white':
         status === 'present' && !isHighContrast,
       'cell-fill-animation': isFilled,
       'cell-reveal': shouldReveal,

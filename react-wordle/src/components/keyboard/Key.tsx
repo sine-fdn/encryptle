@@ -27,19 +27,19 @@ export const Key = ({
   const isHighContrast = getStoredIsHighContrastMode()
 
   const classes = classnames(
-    'xxshort:h-8 xxshort:w-8 xxshort:text-xxs xshort:w-10 xshort:h-10 flex short:h-12 h-14 items-center justify-center rounded mx-0.5 text-xs font-bold cursor-pointer select-none dark:text-white',
+    'xxshort:h-8 xxshort:w-8 xxshort:text-xxs xshort:w-10 xshort:h-10 flex short:h-12 h-14 items-center justify-center rounded mx-0.5 text-xs font-bold border cursor-pointer select-none',
     {
       'transition ease-in-out': isRevealing,
-      'bg-slate-200 dark:bg-slate-600 hover:bg-slate-300 active:bg-slate-400':
+      'bg-slate-200 dark:bg-slate-600 hover:bg-slate-300 active:bg-slate-400 border-slate-700 dark:border-white dark:text-white':
         !status,
-      'bg-slate-400 dark:bg-slate-800 text-white': status === 'absent',
-      'bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white':
+      'bg-slate-400 dark:bg-slate-800 text-slate-700 border-slate-700 dark:text-white dark:border-white': status === 'absent',
+      'bg-orange-200 hover:bg-orange-300 active:bg-orange-300 border-slate-700 text-orange-700 dark:text-white dark:border-white':
         status === 'correct' && isHighContrast,
-      'bg-cyan-500 hover:bg-cyan-600 active:bg-cyan-700 text-white':
+      'bg-cyan-200 hover:bg-cyan-300 active:bg-cyan-700 text-cyan-700 border-slate-700 dark:text-white':
         status === 'present' && isHighContrast,
-      'bg-green-500 hover:bg-green-600 active:bg-green-700 text-white':
+      'bg-green-200 hover:bg-green-300 active:bg-green-200 text-green-700 border-slate-700 dark:text-green-700 dark:border-white':
         status === 'correct' && !isHighContrast,
-      'bg-yellow-500 hover:bg-yellow-600 active:bg-yellow-700 text-white':
+      'bg-yellow-100 hover:bg-yellow-200 active:bg-yellow-100 text-yellow-700 border-slate-700 dark:text-yellow-700 dark:border-white':
         status === 'present' && !isHighContrast,
     }
   )
