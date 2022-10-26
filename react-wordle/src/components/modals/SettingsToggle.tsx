@@ -16,7 +16,7 @@ export const SettingsToggle = ({
   const toggleHolder = classnames(
     'w-14 h-8 flex shrink-0 items-center bg-gray-300 rounded-full p-1 duration-300 ease-in-out cursor-pointer',
     {
-      'bg-green-400': flag,
+      'bg-green-200': flag,
     }
   )
   const toggleButton = classnames(

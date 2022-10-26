@@ -9,16 +9,16 @@
   --default-cell-border-color: theme('colors.black');
   --default-cell-text-color: theme('colors.black');
   --absent-cell-bg-color: theme('colors.slate.400');
-  --correct-cell-bg-color: theme('colors.green.400');
-  --present-cell-bg-color: theme('colors.yellow.400');
+  --correct-cell-bg-color: theme('colors.green.200');
+  --present-cell-bg-color: theme('colors.yellow.100');
   --fade-out-opacity: 10%;
 }
 
 .dark {
-  --default-cell-bg-color: theme('colors.slate.900');
+  --default-cell-bg-color: theme('colors.neutral.800');
   --default-cell-border-color: theme('colors.white');
   --default-cell-text-color: theme('colors.white');
-  --absent-cell-bg-color: theme('colors.slate.700');
+  --absent-cell-bg-color: theme('colors.neutral.600');
 }
 
 .high-contrast {
