@@ -38,7 +38,7 @@ export const Navbar = ({
                     )}
                 </div>
                 <div className="text-center">
-                    <p className="text-xl font-bold dark:text-white pl-9">{GAME_TITLE}</p>
+                    <h1 className="text-xl font-bold dark:text-white pl-9">{GAME_TITLE}</h1>
                     <p className="text-sm dark:text-white pl-9">{GAME_DESCRIPTION} by <a
                         href="https://sine.foundation/" target="_blank" rel="noreferrer" className="underline">
                             SINE Foundation

@@ -1,3 +1,33 @@
+@font-face {
+  font-family: Favorit Light;
+  src: url('./assets/Favorit Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: Favorit Medium;
+  src: url('./assets/Favorit Medium.ttf') format('truetype');
+}
+
 html.dark {
   background-color: rgb(15, 23, 42);
+}
+
+.keyboard {
+  font-family: 'Favorit Medium';
+}
+
+.cell {
+  font-family: 'Favorit Light';
+}
+
+.navbar h1 {
+  font-family: 'Favorit Medium';
+}
+
+.navbar p {
+  font-family: 'Favorit Light';
+}
+
+.modal {
+  font-family: 'Favorit Light';
 }
