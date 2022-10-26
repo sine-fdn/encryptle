@@ -114,7 +114,7 @@ function App() {
             : false
     )
 
-    if (isGameWon && isInfoModalOpen) {
+    if ((isGameWon || isGameLost) && isInfoModalOpen) {
         setIsInfoModalOpen(false)
     }
     // useEffect(() => {
