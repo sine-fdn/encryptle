@@ -78,10 +78,10 @@ svg.cursor-pointer:hover {
 .puzzle {
   height: 30%;
   width: 30%;
-  border: 2px solid;
+  border: 1px solid var(--default-cell-border-color);
   border-radius: 50%;
   position: absolute;
-  background-color: #ffffff;
+  background-color: var(--default-cell-bg-color);
 }
 
 .puzzle-out.puzzle-top {

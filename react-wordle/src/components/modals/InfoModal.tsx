@@ -182,8 +182,14 @@ const AnimCell = ({
         delayClass = 'delay4';
     }
     const classes = classnames(
-        'xxshort:w-11 xxshort:h-11 short:text-2xl short:w-12 short:h-12 w-14 h-14 border-solid border-2 flex items-center justify-center mx-0.5 text-4xl font-bold rounded dark:text-white',
-        'border-black dark:border-slate-100',
+        'xxshort:w-11 xxshort:h-11 short:text-2xl short:w-12 short:h-12 w-14 h-14 border-solid border flex items-center justify-center mx-0.5 text-4xl font-normal rounded',
+        {
+            'bg-white dark:bg-neutral-800 border-slate-200 dark:border-neutral-500 dark:text-white':
+                true,
+            'border-black dark:border-slate-100': value,
+            'cell-fill-animation': isFilled,
+            'cell-reveal': shouldReveal,
+        },
         'popup-anim',
         role === 'client' ? 'anim-cell-client' : 'anim-cell-server',
         role == 'invisible' ? 'invisible' : '',
@@ -191,8 +197,14 @@ const AnimCell = ({
         delayClass,
     )
     const classesPlaceholder = classnames(
-        'xxshort:w-11 xxshort:h-11 short:text-2xl short:w-12 short:h-12 w-14 h-14 border-solid border-2 flex items-center justify-center mx-0.5 text-4xl font-bold rounded dark:text-white',
-        'border-gray dark:border-slate-100',
+        'xxshort:w-11 xxshort:h-11 short:text-2xl short:w-12 short:h-12 w-14 h-14 border-solid border flex items-center justify-center mx-0.5 text-4xl font-normal rounded',
+        {
+            'bg-white dark:bg-neutral-800 border-slate-200 dark:border-neutral-500 dark:text-white':
+                true,
+            'border-black dark:border-slate-100': value,
+            'cell-fill-animation': isFilled,
+            'cell-reveal': shouldReveal,
+        },
         'popup-cell-placeholder',
         role == 'invisible' ? 'invisible' : '',
     )
