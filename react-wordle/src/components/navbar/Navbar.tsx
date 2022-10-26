@@ -4,6 +4,7 @@ import {
     CogIcon,
     InformationCircleIcon,
 } from '@heroicons/react/outline'
+import logo from '../../assets/SINE_Logo.png'
 
 import { ENABLE_ARCHIVED_GAMES } from '../../constants/settings'
 import { GAME_TITLE } from '../../constants/strings'
@@ -24,7 +25,7 @@ export const Navbar = ({
 }: Props) => {
     return (
         <div className="navbar">
-            <div className="navbar-content px-5 py-8">
+            <div className="navbar-content px-5 pt-8 pb-5">
                 <div className="flex">
                     <InformationCircleIcon
                         className="h-6 w-6 cursor-pointer dark:stroke-white"
@@ -39,11 +40,14 @@ export const Navbar = ({
                 </div>
                 <div className="text-center">
                     <p className="text-xl font-bold dark:text-white pl-9">{GAME_TITLE}</p>
-                    <p className="text-sm dark:text-white pl-9">{GAME_DESCRIPTION} by <a
-                        href="https://sine.foundation/" target="_blank" rel="noreferrer" className="underline">
-                            SINE Foundation
-                        </a>
+                    <p className="text-sm dark:text-white pl-9">{GAME_DESCRIPTION} by
                     </p>
+
+                    <a
+                        href="https://sine.foundation/" target="_blank" rel="noreferrer">
+                        <img src={logo} alt="SINE Foundation" className="h-8 pl-9 mt-3 dark:invert" />
+                    </a>
+
                 </div>
                 <div className="right-icons">
                     <ChartBarIcon
