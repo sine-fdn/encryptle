@@ -25,10 +25,10 @@ export const CurrentRow = ({ guess, className }: Props) => {
     const [rand, setRand] = useState(Math.random());
 
     useEffect(() => {
-        setTimeout(() => {
+        setInterval(() => {
             setRand(Math.random());
-        }, 10);
-    });
+        }, 100);
+    }, []);
 
     return (
         <div className={classes}>
