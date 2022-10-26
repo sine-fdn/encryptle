@@ -33,9 +33,9 @@ export const Key = ({
       'bg-slate-200 dark:bg-slate-600 hover:bg-slate-300 active:bg-slate-400 border-slate-700 dark:border-white dark:text-white':
         !status,
       'bg-slate-400 dark:bg-slate-800 text-slate-700 border-slate-700 dark:text-white dark:border-white': status === 'absent',
-      'bg-orange-200 hover:bg-orange-300 active:bg-orange-300 border-slate-700 text-orange-700 dark:text-white dark:border-white':
+      'bg-orange-200 hover:bg-orange-300 active:bg-orange-300 border-slate-700 text-orange-700 dark:text-orange-700 dark:border-white':
         status === 'correct' && isHighContrast,
-      'bg-cyan-200 hover:bg-cyan-300 active:bg-cyan-700 text-cyan-700 border-slate-700 dark:text-white':
+      'bg-cyan-200 hover:bg-cyan-300 active:bg-cyan-700 text-cyan-700 border-slate-700 dark:text-cyan-700 dark:border-white':
         status === 'present' && isHighContrast,
       'bg-green-200 hover:bg-green-300 active:bg-green-200 text-green-700 border-slate-700 dark:text-green-700 dark:border-white':
         status === 'correct' && !isHighContrast,
