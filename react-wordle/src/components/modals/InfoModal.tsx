@@ -232,7 +232,7 @@ const AnimCell = ({
                 {chosenPiece[3] ? <div className="puzzle puzzle-in puzzle-right" /> : null}
             </div>
             <div className={classesPlaceholder} style={{ animationDelay }}>
-                <div className="letter-container" style={{ animationDelay }}>
+                <div className="popup letter-container" style={{ animationDelay }}>
                     {value}
                 </div>
             </div>

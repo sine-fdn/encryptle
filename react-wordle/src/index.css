@@ -128,7 +128,7 @@ svg.cursor-pointer:hover {
   position: absolute;
 }
 
-.letter-container {
+.popup.letter-container {
   z-index: 20;
   width: 100%;
 }
