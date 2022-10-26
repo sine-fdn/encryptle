@@ -243,6 +243,7 @@ function App() {
             }
         }
 
+
         if (
             unicodeLength(currentGuess) === SOLUTION_LENGTH &&
             guesses.length < MAX_CHALLENGES &&
@@ -255,6 +256,7 @@ function App() {
             clearCurrentRowClass();
 
             setIsRevealing(true)
+
             // turn this back off after all
             // chars have been revealed
             setTimeout(() => {
