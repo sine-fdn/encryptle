@@ -27,10 +27,10 @@ export const Cell = ({
   const classes = classnames(
     'xxshort:w-11 xxshort:h-11 short:text-2xl short:w-12 short:h-12 w-14 h-14 border-solid border flex items-center justify-center mx-0.5 text-4xl font-normal rounded',
     {
-      'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-600 dark:text-white':
+      'bg-white dark:bg-neutral-800 border-slate-200 dark:border-neutral-500 dark:text-white':
         !status,
       'border-black dark:border-slate-100': value && !status,
-      'absent bg-slate-300 dark:bg-slate-700 text-slate-700 border-slate-700 dark:border-white dark:text-white':
+      'absent bg-slate-300 dark:bg-neutral-600 text-slate-700 border-slate-700 dark:border-white dark:text-white':
         status === 'absent',
       'correct bg-orange-200 text-orange-700 border-slate-700 dark:border-white':
         status === 'correct' && isHighContrast,

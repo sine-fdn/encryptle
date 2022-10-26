@@ -94,7 +94,7 @@ export const DatePickerModal = ({
                               'cursor-not-allowed opacity-50'
                             }
                             inline-flex rounded border border-gray-300 bg-white p-1 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-0
-                            dark:border-gray-600 dark:bg-slate-700 dark:text-gray-200 dark:focus:ring-blue-600
+                            dark:border-gray-600 dark:bg-neutral-800 dark:text-gray-200 dark:focus:ring-blue-600
                         `}
                 >
                   <ChevronLeftIcon className="h-5 w-5 text-gray-600 dark:text-gray-300" />
@@ -110,7 +110,7 @@ export const DatePickerModal = ({
                               'cursor-not-allowed opacity-50'
                             }
                             inline-flex rounded border border-gray-300 bg-white p-1 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-0
-                            dark:border-gray-600 dark:bg-slate-700 dark:text-gray-200 dark:focus:ring-blue-600
+                            dark:border-gray-600 dark:bg-neutral-800 dark:text-gray-200 dark:focus:ring-blue-600
                         `}
                 >
                   <ChevronRightIcon className="h-5 w-5 text-gray-600 dark:text-gray-300" />
