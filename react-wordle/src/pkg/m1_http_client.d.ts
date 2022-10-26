@@ -1,6 +1,12 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
+* Computes the specified program using Multi-Party Computation, keeping the input private.
+*
+* An M1 server must be running at the specified url, to provide the contributor's input.
+*
+* The client can send plaintext metadata to the server, to influence the server's choice of the
+* input.
 * @param {string} url
 * @param {string} plaintext_metadata
 * @param {MpcProgram} program
@@ -9,40 +15,50 @@
 */
 export function compute(url: string, plaintext_metadata: string, program: MpcProgram, input: MpcData): Promise<MpcData>;
 /**
+* Stores data (either inputs or output) in an M1-compatible format.
 */
 export class MpcData {
   free(): void;
 /**
+* Parses and type-checks a Garble string literal as MpcData.
 * @param {MpcProgram} program
 * @param {string} input
 * @returns {MpcData}
 */
   static from_string(program: MpcProgram, input: string): MpcData;
 /**
+* Parses and type-checks a Garble literal in its JSON representation as MpcData.
 * @param {MpcProgram} program
 * @param {any} literal
 * @returns {MpcData}
 */
   static from_object(program: MpcProgram, literal: any): MpcData;
 /**
+* Returns MpcData as a Garble literal string.
 * @returns {string}
 */
   to_literal_string(): string;
 /**
+* Returns MpcData as a Garble literal in its JSON representation.
 * @returns {any}
 */
   to_literal(): any;
 }
 /**
+* An MPC program that was type-checked and can be executed by the M1 engine.
 */
 export class MpcProgram {
   free(): void;
 /**
+* Type-checks the specified function, returning a compiled program.
 * @param {string} source_code
 * @param {string} function_name
 */
   constructor(source_code: string, function_name: string);
 /**
+* Returns the number of gates in the circuit as a formatted string.
+*
+* E.g. "79k gates (XOR: 44k, NOT: 13k, AND: 21k)"
 * @returns {string}
 */
   report_gates(): string;
@@ -64,11 +80,11 @@ export interface InitOutput {
   readonly __wbindgen_malloc: (a: number) => number;
   readonly __wbindgen_realloc: (a: number, b: number, c: number) => number;
   readonly __wbindgen_export_2: WebAssembly.Table;
-  readonly _dyn_core__ops__function__FnMut__A____Output___R_as_wasm_bindgen__closure__WasmClosure___describe__invoke__ha6687a262fd9ab20: (a: number, b: number, c: number) => void;
+  readonly _dyn_core__ops__function__FnMut__A____Output___R_as_wasm_bindgen__closure__WasmClosure___describe__invoke__h2a28423652df6784: (a: number, b: number, c: number) => void;
   readonly __wbindgen_add_to_stack_pointer: (a: number) => number;
   readonly __wbindgen_free: (a: number, b: number) => void;
   readonly __wbindgen_exn_store: (a: number) => void;
-  readonly wasm_bindgen__convert__closures__invoke2_mut__hb9eadd772fb4ea4e: (a: number, b: number, c: number, d: number) => void;
+  readonly wasm_bindgen__convert__closures__invoke2_mut__h2459d642d9a45848: (a: number, b: number, c: number, d: number) => void;
 }
 
 export type SyncInitInput = BufferSource | WebAssembly.Module;

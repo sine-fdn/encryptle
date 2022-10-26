@@ -1,13 +1,8 @@
-use chrono::Datelike;
-use chrono::Utc;
-use m1::Circuit;
+use chrono::{Datelike, Utc};
 use m1_garble_interop::{check_program, compile_program, serialize_input, Role};
-use m1_http_server::HandledRequest;
-use m1_http_server::{build, MpcRequest};
-use rand::prelude::*;
-use rand::SeedableRng;
-use std::collections::HashMap;
-use std::{env, fmt::Write, iter::zip};
+use m1_http_server::{build, MpcRequest, MpcSession};
+use rand::{prelude::*, SeedableRng};
+use std::{collections::HashMap, env, fmt::Write, iter::zip} ;
 
 #[macro_use]
 extern crate rocket;
@@ -25,7 +20,7 @@ fn rocket() -> _ {
 
     let nonce: u64 = nonce_rng.gen();
 
-    let handler = move |r: MpcRequest| -> Result<HandledRequest, String> {
+    let handler = move |r: MpcRequest| -> Result<MpcSession, String> {
         let client_program = r.program.chars();
         let server_program = wordle_code.chars();
         let mut differences = zip(client_program, server_program);
@@ -59,7 +54,7 @@ fn rocket() -> _ {
             let fly_instance_id = fly_alloc_id.split("-").collect::<Vec<_>>()[0].to_string();
             request_headers.insert("fly-force-instance-id".to_string(), fly_instance_id);
         }
-        Ok(HandledRequest {
+        Ok(MpcSession {
             circuit: circuit.gates.clone(),
             input_from_server: input,
             request_headers,
@@ -89,7 +84,7 @@ fn seed_rng() -> StdRng {
             }
             println!("Initializing RNG using $RNG_SEED...");
             StdRng::from_seed(rng_seed)
-        },
+        }
         Ok(env_seed) => {
             println!("Not a valid $RNG_SEED, must be 64 hex chars, but found: '{env_seed}'");
             return StdRng::from_entropy();
