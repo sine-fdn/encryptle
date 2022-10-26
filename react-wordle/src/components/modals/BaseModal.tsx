@@ -17,7 +17,7 @@ export const BaseModal = ({ title, children, isOpen, handleClose }: Props) => {
         className="fixed inset-0 z-10 overflow-y-auto"
         onClose={handleClose}
       >
-        <div className="flex min-h-full items-center justify-center py-10 px-4 text-center sm:p-0">
+        <div className="flex min-h-full max-w-4xl m-auto items-center justify-center py-10 px-4 text-center sm:p-0">
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
