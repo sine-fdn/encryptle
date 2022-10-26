@@ -69,6 +69,7 @@ function App() {
     const [currentGuess, setCurrentGuess] = useState('')
     const [isGameWon, setIsGameWon] = useState(false)
     const [isInfoModalOpen, setIsInfoModalOpen] = useState(true)
+    const [isInfoIconClicked, setIsInfoIconClicked] = useState(false)
     const [isStatsModalOpen, setIsStatsModalOpen] = useState(false)
     const [isDatePickerModalOpen, setIsDatePickerModalOpen] = useState(false)
     const [isMigrateStatsModalOpen, setIsMigrateStatsModalOpen] = useState(false)
@@ -114,9 +115,11 @@ function App() {
             : false
     )
 
-    if ((isGameWon || isGameLost) && isInfoModalOpen) {
+
+    if ((isGameWon || isGameLost || isInfoIconClicked) && isInfoModalOpen) {
         setIsInfoModalOpen(false)
     }
+
     // useEffect(() => {
     //     // if no game state on load,
     //     // show the user the how-to info modal
@@ -290,7 +293,7 @@ function App() {
         <Div100vh>
             <div className="flex h-full flex-col">
                 <Navbar
-                    setIsInfoModalOpen={setIsInfoModalOpen}
+                    setIsInfoIconClicked={setIsInfoIconClicked}
                     setIsStatsModalOpen={setIsStatsModalOpen}
                     setIsDatePickerModalOpen={setIsDatePickerModalOpen}
                     setIsSettingsModalOpen={setIsSettingsModalOpen}
@@ -324,8 +327,8 @@ function App() {
                         isRevealing={isRevealing}
                     />
                     <InfoModal
-                        isOpen={isInfoModalOpen}
-                        handleClose={() => setIsInfoModalOpen(false)}
+                        isOpen={isInfoModalOpen || isInfoIconClicked}
+                        handleClose={() => {setIsInfoModalOpen(false); setIsInfoIconClicked(false)}}
                     />
                     <StatsModal
                         isOpen={isStatsModalOpen}
