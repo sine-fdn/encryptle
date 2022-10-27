@@ -5,10 +5,13 @@
 :root {
   --animation-speed: 1000ms;
   --animation-speed-fast: 250ms;
+  --animation-speed-popup: 20s;
+  --move-down-popup-anim: calc(200%);
+  --move-up-popup-anim: calc(-200%);
   --default-cell-bg-color: theme('colors.white');
   --default-cell-border-color: theme('colors.black');
   --default-cell-text-color: theme('colors.black');
-  --absent-cell-bg-color: theme('colors.slate.400');
+  --absent-cell-bg-color: theme('colors.slate.300');
   --correct-cell-bg-color: theme('colors.green.200');
   --present-cell-bg-color: theme('colors.yellow.100');
   --fade-out-opacity: 10%;
@@ -22,8 +25,8 @@
 }
 
 .high-contrast {
-  --correct-cell-bg-color: theme('colors.orange.400');
-  --present-cell-bg-color: theme('colors.cyan.400');
+  --correct-cell-bg-color: theme('colors.orange.200');
+  --present-cell-bg-color: theme('colors.cyan.200');
 }
 
 .cell-fill-animation {
@@ -70,6 +73,288 @@ svg.cursor-pointer:hover {
 .checking {
   transition: opacity var(--animation-speed);
   opacity: var(--fade-out-opacity);
+}
+
+.puzzle {
+  height: 30%;
+  width: 30%;
+  border: 1px solid var(--default-cell-border-color);
+  border-radius: 50%;
+  position: absolute;
+  background-color: var(--default-cell-bg-color);
+}
+
+.puzzle-out.puzzle-top {
+  transform: translate(0%, -205%);
+  border-bottom-color: transparent;
+}
+
+.puzzle-out.puzzle-bottom {
+  transform: translate(0%, 205%);
+  border-top-color: transparent;
+}
+
+.puzzle-in.puzzle-left {
+  transform: translate(-140%, 0%);
+  border-left-color: transparent;
+}
+
+.puzzle-in.puzzle-right {
+  transform: translate(140%, 0%);
+  border-right-color: transparent;
+}
+
+.anim-cell-client {
+  z-index: 10;
+  position: absolute;
+}
+
+.popup.letter-container {
+  z-index: 20;
+  width: 100%;
+}
+
+.anim-cell-client.anim-color-absent.delay0 {
+  animation-name: popupMoveDown1, popupCellAbsent1;
+  animation-duration: var(--animation-speed-popup);
+  animation-iteration-count: infinite;
+}
+
+.anim-cell-client.anim-color-absent.delay0 .puzzle-out {
+  animation-name: popupCellAbsent1;
+  animation-duration: var(--animation-speed-popup);
+  animation-iteration-count: infinite;
+}
+
+@keyframes popupMoveDown1 {
+  0% {
+    transform: translate(0, 0);
+  }
+  2% {
+    transform: translate(0, 0);
+  }
+  4% {
+    transform: translate(0, var(--move-down-popup-anim));
+  }
+  8% {
+    transform: translate(0, var(--move-down-popup-anim));
+  }
+  24% {
+    transform: translate(428%, var(--move-down-popup-anim));
+  }
+  28% {
+    transform: translate(0, 0)
+  }
+}
+
+@keyframes popupCellAbsent1 {
+  4% {
+    background-color: var(--default-cell-bg-color);
+  }
+  8% {
+    background-color: var(--absent-cell-bg-color);
+  }
+  96% {
+    background-color: var(--absent-cell-bg-color);
+  }
+}
+
+.anim-cell-client.anim-color-correct.delay1 {
+  animation-name: popupMoveDown2, popupCellCorrect2;
+  animation-duration: var(--animation-speed-popup);
+  animation-iteration-count: infinite;
+}
+
+.anim-cell-client.anim-color-correct.delay1 .puzzle-out {
+  animation-name: popupCellCorrect2;
+  animation-duration: var(--animation-speed-popup);
+  animation-iteration-count: infinite;
+}
+
+@keyframes popupMoveDown2 {
+  28% {
+    transform: translate(0, 0);
+  }
+  32% {
+    transform: translate(0, var(--move-down-popup-anim));
+  }
+  36% {
+    transform: translate(0, var(--move-down-popup-anim));
+  }
+  40% {
+    transform: translate(0, 0)
+  }
+}
+
+@keyframes popupCellCorrect2 {
+  32% {
+    background-color: var(--default-cell-bg-color);
+  }
+  36% {
+    background-color: var(--correct-cell-bg-color);
+  }
+  96% {
+    background-color: var(--correct-cell-bg-color);
+  }
+}
+
+.anim-cell-client.anim-color-correct.delay2 {
+  animation-name: popupMoveDown3, popupCellCorrect3;
+  animation-duration: var(--animation-speed-popup);
+  animation-iteration-count: infinite;
+}
+
+.anim-cell-client.anim-color-correct.delay2 .puzzle-out {
+  animation-name: popupCellCorrect3;
+  animation-duration: var(--animation-speed-popup);
+  animation-iteration-count: infinite;
+}
+
+@keyframes popupMoveDown3 {
+  40% {
+    transform: translate(0, 0);
+  }
+  44% {
+    transform: translate(0, var(--move-down-popup-anim));
+  }
+  48% {
+    transform: translate(0, var(--move-down-popup-anim));
+  }
+  52% {
+    transform: translate(0, 0)
+  }
+}
+
+@keyframes popupCellCorrect3 {
+  44% {
+    background-color: var(--default-cell-bg-color);
+  }
+  48% {
+    background-color: var(--correct-cell-bg-color);
+  }
+  96% {
+    background-color: var(--correct-cell-bg-color);
+  }
+}
+
+.anim-cell-client.anim-color-present.delay3 {
+  animation-name: popupMoveDown4, popupCellPresent4;
+  animation-duration: var(--animation-speed-popup);
+  animation-iteration-count: infinite;
+  animation-delay: 9s;
+}
+
+.anim-cell-client.anim-color-present.delay3 .puzzle-out {
+  animation-name: popupCellPresent4;
+  animation-duration: var(--animation-speed-popup);
+  animation-iteration-count: infinite;
+}
+
+@keyframes popupMoveDown4 {
+  52% {
+    transform: translate(0, 0);
+  }
+  56% {
+    transform: translate(0, var(--move-down-popup-anim));
+  }
+  58% {
+    transform: translate(0, var(--move-down-popup-anim));
+  }
+  62% {
+    transform: translate(108%, var(--move-down-popup-anim));
+  }
+  64% {
+    transform: translate(108%, var(--move-down-popup-anim));
+  }
+  68% {
+    transform: translate(0, 0)
+  }
+}
+
+@keyframes popupCellPresent4 {
+  56% {
+    background-color: var(--default-cell-bg-color);
+  }
+  58% {
+    background-color: var(--absent-cell-bg-color);
+  }
+  62% {
+    background-color: var(--absent-cell-bg-color);
+  }
+  64% {
+    background-color: var(--present-cell-bg-color);
+  }
+  96% {
+    background-color: var(--present-cell-bg-color);
+  }
+}
+
+.anim-cell-client.anim-color-absent.delay4 {
+  animation-name: popupMoveDown5, popupCellAbsent5;
+  animation-duration: var(--animation-speed-popup);
+  animation-iteration-count: infinite;
+  animation-delay: 12s;
+}
+
+.anim-cell-client.anim-color-absent.delay4 .puzzle-out {
+  animation-name: popupCellAbsent5;
+  animation-duration: var(--animation-speed-popup);
+  animation-iteration-count: infinite;
+}
+
+@keyframes popupMoveDown5 {
+  68% {
+    transform: translate(0, 0);
+  }
+  72% {
+    transform: translate(0, var(--move-down-popup-anim));
+  }
+  76% {
+    transform: translate(0, var(--move-down-popup-anim));
+  }
+  92% {
+    transform: translate(-428%, var(--move-down-popup-anim));
+  }
+  96% {
+    transform: translate(0, 0)
+  }
+}
+
+@keyframes popupCellAbsent5 {
+  72% {
+    background-color: var(--default-cell-bg-color);
+  }
+  76% {
+    background-color: var(--absent-cell-bg-color);
+  }
+  96% {
+    background-color: var(--absent-cell-bg-color);
+  }
+}
+
+.anim-cell-server {
+  animation-name: popupMoveUpServer;
+  animation-duration: var(--animation-speed-popup);
+  animation-iteration-count: infinite;
+  position: absolute;
+}
+
+@keyframes popupMoveUpServer {
+  0% {
+    transform: translate(0, 0);
+  }
+  2% {
+    transform: translate(0, 0);
+  }
+  4% {
+    transform: translate(0, var(--move-up-popup-anim));
+  }
+  94% {
+    transform: translate(0, var(--move-up-popup-anim));
+  }
+  98% {
+    transform: translate(0, 0);
+  }
 }
 
 .navbar {
