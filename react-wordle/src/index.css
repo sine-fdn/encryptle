@@ -11,7 +11,7 @@
   --default-cell-bg-color: theme('colors.white');
   --default-cell-border-color: theme('colors.black');
   --default-cell-text-color: theme('colors.black');
-  --absent-cell-bg-color: theme('colors.slate.400');
+  --absent-cell-bg-color: theme('colors.slate.300');
   --correct-cell-bg-color: theme('colors.green.200');
   --present-cell-bg-color: theme('colors.yellow.100');
   --fade-out-opacity: 10%;
@@ -25,8 +25,8 @@
 }
 
 .high-contrast {
-  --correct-cell-bg-color: theme('colors.orange.400');
-  --present-cell-bg-color: theme('colors.cyan.400');
+  --correct-cell-bg-color: theme('colors.orange.200');
+  --present-cell-bg-color: theme('colors.cyan.200');
 }
 
 .cell-fill-animation {

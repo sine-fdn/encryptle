@@ -201,7 +201,7 @@ const AnimCell = ({
         {
             'bg-white dark:bg-neutral-800 border-slate-200 dark:border-neutral-500 dark:text-white':
                 true,
-            'border-black dark:border-slate-100': value,
+            'border-gray dark:border-slate-100': value,
             'cell-fill-animation': isFilled,
             'cell-reveal': shouldReveal,
         },
