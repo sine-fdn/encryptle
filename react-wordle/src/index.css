@@ -104,27 +104,8 @@ svg.cursor-pointer:hover {
   border-right-color: transparent;
 }
 
-.anim-cell-client.anim-color-correct .puzzle-out {
-  animation-name: popupCellCorrect;
-  animation-duration: var(--animation-speed-popup);
-  animation-iteration-count: infinite;
-}
-
-.anim-cell-client.anim-color-present .puzzle-out {
-  animation-name: popupCellPresent;
-  animation-duration: var(--animation-speed-popup);
-  animation-iteration-count: infinite;
-}
-
-.anim-cell-client.anim-color-absent .puzzle-out {
-  animation-name: popupCellAbsent;
-  animation-duration: var(--animation-speed-popup);
-  animation-iteration-count: infinite;
-}
-
 .anim-cell-client {
   z-index: 10;
-  margin-bottom: 4em;
   position: absolute;
 }
 
@@ -356,31 +337,6 @@ svg.cursor-pointer:hover {
   animation-duration: var(--animation-speed-popup);
   animation-iteration-count: infinite;
   position: absolute;
-}
-
-.anim-cell-server .letter-container {
-  animation-name: popupMoveDownServer;
-  animation-duration: var(--animation-speed-popup);
-  animation-iteration-count: infinite;
-  background-color: #00000000 !important;
-}
-
-@keyframes popupMoveDownServer {
-  0% {
-    transform: translate(0, 0);
-  }
-  2% {
-    transform: translate(0, 0);
-  }
-  4% {
-    transform: translate(0, var(--move-down-popup-anim));
-  }
-  94% {
-    transform: translate(0, var(--move-down-popup-anim));
-  }
-  98% {
-    transform: translate(0, 0);
-  }
 }
 
 @keyframes popupMoveUpServer {
