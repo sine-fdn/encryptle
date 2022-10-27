@@ -11,14 +11,14 @@ import { GAME_TITLE } from '../../constants/strings'
 import { GAME_DESCRIPTION } from '../../constants/strings'
 
 type Props = {
-    setIsInfoModalOpen: (value: boolean) => void
+    setIsInfoIconClicked: (value: boolean) => void
     setIsStatsModalOpen: (value: boolean) => void
     setIsDatePickerModalOpen: (value: boolean) => void
     setIsSettingsModalOpen: (value: boolean) => void
 }
 
 export const Navbar = ({
-    setIsInfoModalOpen,
+    setIsInfoIconClicked,
     setIsStatsModalOpen,
     setIsDatePickerModalOpen,
     setIsSettingsModalOpen,
@@ -29,7 +29,7 @@ export const Navbar = ({
                 <div className="flex">
                     <InformationCircleIcon
                         className="h-6 w-6 cursor-pointer dark:stroke-white"
-                        onClick={() => setIsInfoModalOpen(true)}
+                        onClick={() => setIsInfoIconClicked(true)}
                     />
                     {ENABLE_ARCHIVED_GAMES && (
                         <CalendarIcon
