@@ -11,24 +11,24 @@ A version of New York Times' popular game _Wordle_, using SINE's [Secure Multi-P
 [__Play here__!](https://mpc-wordle.fly.dev)
 
 ## Concept
-In the original Wordle game the player's guess is compared to the secret word. 
+In the original Wordle game the player's guesses are compared to the secret word. 
 Hence, although the latter is kept secret, the former are shared with the server.
 This version of Wordle uses [Secure Multi-Party Computation](https://sine.foundation/library/002-smpc), 
-hence keeping both the secret word _and the player's guesses_ private.
+keeping both the secret word _and the player's guesses_ private.
 
 This project was developed to serve as a demo for SINE's M1 engine. 
 
 ## Technologies
-This repository contains a server and a client.
+This repository contains a backend server (henceforth, 'the server') and a frontend server (henceforth 'the client').
 
-The server is powered by `rocket.rs` and implements SINE's M1 engine, which runs (Garble)[https://github.com/sine-fdn/garble-lang] programs.
+The server is powered by `rocket.rs` and implements SINE's M1 engine, which runs [Garble](https://github.com/sine-fdn/garble-lang) programs.
 
-The client adapts (this existing Wordle clone)[https://github.com/cwackerfuss/react-wordle], which uses (mainly) React and Typescript. 
+The client adapts [this repository](https://github.com/cwackerfuss/react-wordle), which uses (mainly) React and Typescript. 
 
 ## Build and run
 
 ### Run locally
-Start the MPC server by running the following commands:
+Start the server by running the following commands:
 ```
 $ cd mpc-server
 $ cargo install --path . 
@@ -43,7 +43,7 @@ $ npm run start
 ```
 Open http://localhost:3000 and play!
 
-### Build Docker images and run Docker containers
+### Build and run Docker containers
 Build and run the server using the following commands:
 ```
 $ cd mpc-wordle
@@ -57,6 +57,7 @@ $ cd react-wordle
 $ docker build -t reactle:dev .
 $ docker run -p 3000:3000 --name reactle-dev reactle:dev
 ```
+Open http://localhost:3000 and play!
 
 Build and run the client for __production__ using the following commands:
 ```
