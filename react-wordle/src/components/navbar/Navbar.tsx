@@ -40,12 +40,12 @@ export const Navbar = ({
                 </div>
                 <div className="text-center">
                     <p className="text-xl font-bold dark:text-white pl-9">{GAME_TITLE}</p>
-                    <p className="text-sm dark:text-white pl-9">{GAME_DESCRIPTION} by
+                    <p className="text-sm dark:text-white pl-9"> <a className="underline" href="https://sine.foundation/library/002-smpc" target="_blank" rel="noreferrer">Multi-Party Computation</a> Wordle by
                     </p>
 
                     <a
                         href="https://sine.foundation/" target="_blank" rel="noreferrer">
-                        <img src={logo} alt="SINE Foundation" className="h-8 pl-9 mt-3 dark:invert" />
+                        <img src={logo} alt="SINE Foundation" className="sm:h-10 md:h-8 pl-9 mt-3 dark:invert" />
                     </a>
 
                 </div>
