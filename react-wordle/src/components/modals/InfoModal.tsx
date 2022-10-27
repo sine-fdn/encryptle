@@ -1,5 +1,4 @@
 import { REVEAL_TIME_MS } from '../../constants/settings'
-import { getStoredIsHighContrastMode } from '../../lib/localStorage'
 import { CharStatus } from '../../lib/statuses'
 import { Cell } from '../grid/Cell'
 import { BaseModal } from './BaseModal'
@@ -158,12 +157,11 @@ const AnimCell = ({
     const isFilled = value && !isCompleted
     const shouldReveal = isRevealing && isCompleted
     const animationDelay = `${position * REVEAL_TIME_MS}ms`
-    const isHighContrast = getStoredIsHighContrastMode()
 
     let animColor = '';
-    if (status == 'correct') {
+    if (status === 'correct') {
         animColor = 'anim-color-correct';
-    } else if (status == 'present') {
+    } else if (status === 'present') {
         animColor = 'anim-color-present';
     } else {
         animColor = 'anim-color-absent';
@@ -192,7 +190,7 @@ const AnimCell = ({
         },
         'popup-anim',
         role === 'client' ? 'anim-cell-client' : 'anim-cell-server',
-        role == 'invisible' ? 'invisible' : '',
+        role === 'invisible' ? 'invisible' : '',
         animColor,
         delayClass,
     )
@@ -206,7 +204,7 @@ const AnimCell = ({
             'cell-reveal': shouldReveal,
         },
         'popup-cell-placeholder',
-        role == 'invisible' ? 'invisible' : '',
+        role === 'invisible' ? 'invisible' : '',
     )
 
     let pieces = [
