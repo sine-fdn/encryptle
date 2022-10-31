@@ -3,7 +3,7 @@
 Secure Multi-Party Computation Wordle by 
 
 <a href="https://sine.foundation" target="_blank">
-  <img src="https://user-images.githubusercontent.com/100690574/198339557-0e1bb4cd-fe42-448b-a02e-561d8ef4460f.png" alt="SINE" height="20"/> 
+  <img src="https://user-images.githubusercontent.com/100690574/199080562-324cd853-48d0-46f8-8e31-3ff70219a888.png" alt="SINE" height="20"/> 
 </a>
 
 ## Description
