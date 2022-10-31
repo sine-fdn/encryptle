@@ -6,7 +6,7 @@ Multi-Party Computation Wordle by
 </a>
 
 ## Description
-A version of New York Times' popular game _Wordle_, using SINE's [Secure Multi-Party Computation (M1) engine](https://github.com/sine-fdn/wrk17-alpha). 
+A version of [New York Times' popular game _Wordle_](https://www.nytimes.com/games/wordle/index.html), using SINE's [Secure Multi-Party Computation (M1) engine](https://github.com/sine-fdn/wrk17-alpha). 
 
 [__Play here__!](https://mpc-wordle.fly.dev)
 
