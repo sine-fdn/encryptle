@@ -6,8 +6,8 @@
   --animation-speed: 1000ms;
   --animation-speed-fast: 250ms;
   --animation-speed-popup: 20s;
-  --move-down-popup-anim: calc(200%);
-  --move-up-popup-anim: calc(-200%);
+  --move-down-popup-anim: calc(150%);
+  --move-up-popup-anim: calc(-150%);
   --default-cell-bg-color: theme('colors.white');
   --default-cell-border-color: theme('colors.black');
   --default-cell-text-color: theme('colors.black');
@@ -84,24 +84,44 @@ svg.cursor-pointer:hover {
   background-color: var(--default-cell-bg-color);
 }
 
-.puzzle-out.puzzle-top {
-  transform: translate(0%, -205%);
+.anim-cell-client .puzzle-in.puzzle-left {
+  transform: translate(-65%, 140%);
   border-bottom-color: transparent;
 }
 
-.puzzle-out.puzzle-bottom {
-  transform: translate(0%, 205%);
+.anim-cell-server .puzzle-in.puzzle-left {
+  transform: translate(-65%, -205%);
+  border-bottom-color: transparent;
+}
+
+.anim-cell-client .puzzle-in.puzzle-right {
+  transform: translate(65%, 140%);
+  border-bottom-color: transparent;
+}
+
+.anim-cell-server .puzzle-in.puzzle-right {
+  transform: translate(65%, -205%);
+  border-bottom-color: transparent;
+}
+
+.anim-cell-client .puzzle-out.puzzle-left {
+  transform: translate(-65%, 205%);
   border-top-color: transparent;
 }
 
-.puzzle-in.puzzle-left {
-  transform: translate(-140%, 0%);
-  border-left-color: transparent;
+.anim-cell-server .puzzle-out.puzzle-left {
+  transform: translate(-65%, -140%);
+  border-top-color: transparent;
 }
 
-.puzzle-in.puzzle-right {
-  transform: translate(140%, 0%);
-  border-right-color: transparent;
+.anim-cell-client .puzzle-out.puzzle-right {
+  transform: translate(65%, 205%);
+  border-top-color: transparent;
+}
+
+.anim-cell-server .puzzle-out.puzzle-right {
+  transform: translate(65%, -140%);
+  border-top-color: transparent;
 }
 
 .anim-cell-client {
