@@ -1,10 +1,8 @@
 # Encryptle
 
-Secure Multi-Party Computation Wordle by 
+<img src="https://avatars.githubusercontent.com/u/67928740?s=200&v=4" alt="SINE" height="150" align="right"/> 
 
-<a href="https://sine.foundation" target="_blank">
-  <img src="https://user-images.githubusercontent.com/100690574/199080562-324cd853-48d0-46f8-8e31-3ff70219a888.png" alt="SINE" height="20"/> 
-</a>
+Secure Multi-Party Computation Wordle
 
 ## Description
 
