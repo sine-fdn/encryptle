@@ -12,8 +12,11 @@
   --default-cell-border-color: theme('colors.black');
   --default-cell-text-color: theme('colors.black');
   --absent-cell-bg-color: theme('colors.slate.300');
+  --absent-cell-text-color: theme('colors.slate.700');
   --correct-cell-bg-color: theme('colors.green.200');
+  --correct-cell-text-color: theme('colors.green.700');
   --present-cell-bg-color: theme('colors.yellow.100');
+  --present-cell-text-color: theme('colors.yellow.700');
   --fade-out-opacity: 10%;
 }
 
@@ -22,11 +25,14 @@
   --default-cell-border-color: theme('colors.white');
   --default-cell-text-color: theme('colors.white');
   --absent-cell-bg-color: theme('colors.neutral.600');
+  --absent-cell-text-color: theme('colors.white');
 }
 
 .high-contrast {
   --correct-cell-bg-color: theme('colors.orange.200');
+  --correct-cell-text-color: theme('colors.orange.700');
   --present-cell-bg-color: theme('colors.cyan.200');
+  --present-cell-text-color: theme('colors.cyan.700');
 }
 
 .cell-fill-animation {
@@ -146,6 +152,12 @@ svg.cursor-pointer:hover {
   animation-iteration-count: infinite;
 }
 
+.popup-cell-placeholder.text-color-absent.delay0 {
+  animation-name: popupTextAbsent1;
+  animation-duration: var(--animation-speed-popup);
+  animation-iteration-count: infinite;
+}
+
 @keyframes popupMoveDown1 {
   0% {
     transform: translate(0, 0);
@@ -179,6 +191,21 @@ svg.cursor-pointer:hover {
   }
 }
 
+@keyframes popupTextAbsent1 {
+  25% {
+    color: var(--default-cell-text-color);
+  }
+  27% {
+    color: var(--absent-cell-text-color);
+  }
+  96% {
+    color: var(--absent-cell-text-color);
+  }
+  100% {
+    color: var(--default-cell-text-color);
+  }
+}
+
 .anim-cell-client.anim-color-correct.delay1 {
   animation-name: popupMoveDown2, popupCellCorrect2;
   animation-duration: var(--animation-speed-popup);
@@ -187,6 +214,12 @@ svg.cursor-pointer:hover {
 
 .anim-cell-client.anim-color-correct.delay1 .puzzle-out {
   animation-name: popupCellCorrect2;
+  animation-duration: var(--animation-speed-popup);
+  animation-iteration-count: infinite;
+}
+
+.popup-cell-placeholder.text-color-correct.delay1 {
+  animation-name: popupTextCorrect2;
   animation-duration: var(--animation-speed-popup);
   animation-iteration-count: infinite;
 }
@@ -218,6 +251,21 @@ svg.cursor-pointer:hover {
   }
 }
 
+@keyframes popupTextCorrect2 {
+  37% {
+    color: var(--default-cell-text-color);
+  }
+  39% {
+    color: var(--correct-cell-text-color);
+  }
+  96% {
+    color: var(--correct-cell-text-color);
+  }
+  100% {
+    color: var(--default-cell-text-color);
+  }
+}
+
 .anim-cell-client.anim-color-correct.delay2 {
   animation-name: popupMoveDown3, popupCellCorrect3;
   animation-duration: var(--animation-speed-popup);
@@ -226,6 +274,12 @@ svg.cursor-pointer:hover {
 
 .anim-cell-client.anim-color-correct.delay2 .puzzle-out {
   animation-name: popupCellCorrect3;
+  animation-duration: var(--animation-speed-popup);
+  animation-iteration-count: infinite;
+}
+
+.popup-cell-placeholder.text-color-correct.delay2 {
+  animation-name: popupTextCorrect3;
   animation-duration: var(--animation-speed-popup);
   animation-iteration-count: infinite;
 }
@@ -257,6 +311,21 @@ svg.cursor-pointer:hover {
   }
 }
 
+@keyframes popupTextCorrect3 {
+  49% {
+    color: var(--default-cell-text-color);
+  }
+  51% {
+    color: var(--correct-cell-text-color);
+  }
+  96% {
+    color: var(--correct-cell-text-color);
+  }
+  100% {
+    color: var(--default-cell-text-color);
+  }
+}
+
 .anim-cell-client.anim-color-present.delay3 {
   animation-name: popupMoveDown4, popupCellPresent4;
   animation-duration: var(--animation-speed-popup);
@@ -266,6 +335,12 @@ svg.cursor-pointer:hover {
 
 .anim-cell-client.anim-color-present.delay3 .puzzle-out {
   animation-name: popupCellPresent4;
+  animation-duration: var(--animation-speed-popup);
+  animation-iteration-count: infinite;
+}
+
+.popup-cell-placeholder.text-color-present.delay3 {
+  animation-name: popupTextPresent4;
   animation-duration: var(--animation-speed-popup);
   animation-iteration-count: infinite;
 }
@@ -309,6 +384,21 @@ svg.cursor-pointer:hover {
   }
 }
 
+@keyframes popupTextPresent4 {
+  65% {
+    color: var(--default-cell-text-color);
+  }
+  67% {
+    color: var(--present-cell-text-color);
+  }
+  96% {
+    color: var(--present-cell-text-color);
+  }
+  100% {
+    color: var(--default-cell-text-color);
+  }
+}
+
 .anim-cell-client.anim-color-absent.delay4 {
   animation-name: popupMoveDown5, popupCellAbsent5;
   animation-duration: var(--animation-speed-popup);
@@ -318,6 +408,12 @@ svg.cursor-pointer:hover {
 
 .anim-cell-client.anim-color-absent.delay4 .puzzle-out {
   animation-name: popupCellAbsent5;
+  animation-duration: var(--animation-speed-popup);
+  animation-iteration-count: infinite;
+}
+
+.popup-cell-placeholder.text-color-absent.delay4 {
+  animation-name: popupTextAbsent5;
   animation-duration: var(--animation-speed-popup);
   animation-iteration-count: infinite;
 }
@@ -349,6 +445,21 @@ svg.cursor-pointer:hover {
   }
   96% {
     background-color: var(--absent-cell-bg-color);
+  }
+}
+
+@keyframes popupTextAbsent5 {
+  93% {
+    color: var(--default-cell-text-color);
+  }
+  95% {
+    color: var(--absent-cell-text-color);
+  }
+  96% {
+    color: var(--absent-cell-text-color);
+  }
+  100% {
+    color: var(--default-cell-text-color);
   }
 }
 

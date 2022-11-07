@@ -181,6 +181,16 @@ const AnimCell = ({
     } else if (delay === 4) {
         delayClass = 'delay4';
     }
+
+    let textColor = '';
+    if (status === 'correct') {
+        textColor = 'text-color-correct';
+    } else if (status === 'present') {
+        textColor = 'text-color-present';
+    } else {
+        textColor = 'text-color-absent';
+    }
+
     const classes = classnames(
         'xxshort:w-11 xxshort:h-11 short:text-2xl short:w-12 short:h-12 w-14 h-14 border-solid border flex items-center justify-center mx-0.5 text-4xl font-normal rounded',
         {
@@ -207,6 +217,8 @@ const AnimCell = ({
         },
         'popup-cell-placeholder',
         role === 'invisible' ? 'invisible' : '',
+        textColor,
+        delayClass,
     )
 
     let pieces = [
