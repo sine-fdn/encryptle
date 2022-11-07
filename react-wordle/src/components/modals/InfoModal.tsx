@@ -65,12 +65,14 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
             <h3 className="text-lg font-medium mt-8 leading-6 text-gray-900 dark:text-gray-100">Privacy-Preserving</h3>
 
             <div className="mb-1 mt-2 flex justify-center">
-                <p className="text-sm text-gray-500 dark:text-gray-300">
-                    <ul>
-                        <li>Your guess is private and kept hidden from the server.</li>
-                        <li>The server's daily word is private and kept hidden from you.</li>
-                    </ul>
-                </p>
+                <div>
+                    <p className="text-sm text-gray-500 dark:text-gray-300">
+                        Your guess is private and kept hidden from the server.
+                    </p>
+                    <p className="text-sm text-gray-500 dark:text-gray-300">
+                        The server's daily word is private and kept hidden from you.
+                    </p>
+                </div>
             </div>
 
             <div className="mb-1 mt-4 flex justify-center">
@@ -87,31 +89,31 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
             </div>
 
             <div className="mt-8 flex justify-center">
-                <AnimCell value="P" piece={1} delay={0} isCompleted={true} role="client" />
-                <AnimCell value="A" piece={2} delay={1} isCompleted={true} role="client" status="correct" />
-                <AnimCell value="G" piece={3} delay={2} isCompleted={true} role="client" status="correct" />
-                <AnimCell value="E" piece={4} delay={3} isCompleted={true} role="client" status="present" />
-                <AnimCell value="S" piece={5} delay={4} isCompleted={true} role="client" />
+                <AnimCell value="P" piece={0} delay={0} isCompleted={true} role="client" />
+                <AnimCell value="A" piece={1} delay={1} isCompleted={true} role="client" status="correct" />
+                <AnimCell value="G" piece={2} delay={2} isCompleted={true} role="client" status="correct" />
+                <AnimCell value="E" piece={3} delay={3} isCompleted={true} role="client" status="present" />
+                <AnimCell value="S" piece={4} delay={4} isCompleted={true} role="client" />
             </div>
 
             <div className="flex justify-center">
-                <AnimCell value="-" piece={1} delay={0} role="invisible" />
+                <AnimCell value="-" piece={0} delay={0} role="invisible" />
             </div>
 
             <div className="flex justify-center">
-                <AnimCell value="-" piece={1} delay={0} role="invisible" />
+                <AnimCell value="-" piece={0} delay={0} role="invisible" />
             </div>
 
             <div className="flex justify-center">
-                <AnimCell value="-" piece={1} delay={0} role="invisible" />
+                <AnimCell value="-" piece={0} delay={0} role="invisible" />
             </div>
 
             <div className="mb-4 flex justify-center">
-                <AnimCell value="V" piece={6} isCompleted={true} role="server" />
-                <AnimCell value="A" piece={2} isCompleted={true} role="server" status="correct" />
-                <AnimCell value="G" piece={3} isCompleted={true} role="server" status="correct" />
-                <AnimCell value="U" piece={7} isCompleted={true} role="server" />
-                <AnimCell value="E" piece={4} isCompleted={true} role="server" status="present" />
+                <AnimCell value="V" piece={5} isCompleted={true} role="server" />
+                <AnimCell value="A" piece={1} isCompleted={true} role="server" status="correct" />
+                <AnimCell value="G" piece={2} isCompleted={true} role="server" status="correct" />
+                <AnimCell value="U" piece={6} isCompleted={true} role="server" />
+                <AnimCell value="E" piece={3} isCompleted={true} role="server" status="present" />
             </div>
 
 
@@ -179,6 +181,16 @@ const AnimCell = ({
     } else if (delay === 4) {
         delayClass = 'delay4';
     }
+
+    let textColor = '';
+    if (status === 'correct') {
+        textColor = 'text-color-correct';
+    } else if (status === 'present') {
+        textColor = 'text-color-present';
+    } else {
+        textColor = 'text-color-absent';
+    }
+
     const classes = classnames(
         'xxshort:w-11 xxshort:h-11 short:text-2xl short:w-12 short:h-12 w-14 h-14 border-solid border flex items-center justify-center mx-0.5 text-4xl font-normal rounded',
         {
@@ -205,27 +217,29 @@ const AnimCell = ({
         },
         'popup-cell-placeholder',
         role === 'invisible' ? 'invisible' : '',
+        textColor,
+        delayClass,
     )
 
     let pieces = [
-        [true, true, false, false],
-        [true, false, true, false],
-        [true, false, false, false],
-        [false, false, true, false],
-        [true, true, true, false],
-        [false, true, true, true],
-        [true, true, true, true],
-        [false, false, true, true],
+        ['out', 'in'],
+        ['in', 'out'],
+        ['in', 'none'],
+        ['none', 'out'],
+        ['out', 'out'],
+        ['out', 'none'],
+        ['in', 'in'],
+        ['none', 'in'],
     ];
     let chosenPiece = pieces[piece];
 
     return (
         <div>
             <div className={classes} style={{ animationDelay }}>
-                {chosenPiece[0] ? <div className="puzzle puzzle-out puzzle-top" /> : null}
-                {chosenPiece[1] ? <div className="puzzle puzzle-out puzzle-bottom" /> : null}
-                {chosenPiece[2] ? <div className="puzzle puzzle-in puzzle-left" /> : null}
-                {chosenPiece[3] ? <div className="puzzle puzzle-in puzzle-right" /> : null}
+                {chosenPiece[0] === 'in' ? <div className="puzzle puzzle-left puzzle-in" /> : null}
+                {chosenPiece[0] === 'out' ? <div className="puzzle puzzle-left puzzle-out" /> : null}
+                {chosenPiece[1] === 'in' ? <div className="puzzle puzzle-right puzzle-in" /> : null}
+                {chosenPiece[1] === 'out' ? <div className="puzzle puzzle-right puzzle-out" /> : null}
             </div>
             <div className={classesPlaceholder} style={{ animationDelay }}>
                 <div className="popup letter-container" style={{ animationDelay }}>
