@@ -8,7 +8,6 @@ import logo from '../../assets/SINE_Logo.png'
 
 import { ENABLE_ARCHIVED_GAMES } from '../../constants/settings'
 import { GAME_TITLE } from '../../constants/strings'
-import { GAME_DESCRIPTION } from '../../constants/strings'
 
 type Props = {
     setIsInfoIconClicked: (value: boolean) => void
@@ -39,13 +38,12 @@ export const Navbar = ({
                     )}
                 </div>
                 <div className="text-center">
-                    <p className="text-xl font-bold dark:text-white pl-9">{GAME_TITLE}</p>
-                    <p className="text-sm dark:text-white pl-9">{GAME_DESCRIPTION} by
-                    </p>
+                    <h1 className="text-xl font-bold dark:text-white pl-9">{GAME_TITLE}</h1>
+                    <p className="dark:text-white"><a className="underline decoration-yellow-200 decoration-4 pl-9" href="https://sine.foundation/library/002-smpc" target="_blank" rel="noreferrer">SMPC</a> Wordle by</p>
 
                     <a
                         href="https://sine.foundation/" target="_blank" rel="noreferrer">
-                        <img src={logo} alt="SINE Foundation" className="h-8 pl-9 mt-3 dark:invert" />
+                        <img src={logo} alt="SINE Foundation" className="sm:h-10 md:h-8 pl-9 mt-3 dark:invert" />
                     </a>
 
                 </div>
