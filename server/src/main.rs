@@ -1,6 +1,6 @@
 use chrono::{Datelike, Utc};
-use m1_garble_interop::{check_program, compile_program, serialize_input, Role};
-use m1_http_server::{build, MpcRequest, MpcSession};
+use tandem_garble_interop::{check_program, compile_program, serialize_input, Role};
+use tandem_http_server::{build, MpcRequest, MpcSession};
 use rand::{prelude::*, SeedableRng};
 use std::{collections::HashMap, env, fmt::Write, iter::zip} ;
 
