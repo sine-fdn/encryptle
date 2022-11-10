@@ -61,7 +61,7 @@ fn rocket() -> _ {
         })
     };
 
-    println!("Starting MPC Wordle server...");
+    println!("Starting Encryptle server...");
     build(Box::new(handler))
 }
 
