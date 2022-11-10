@@ -12,5 +12,5 @@ jobs:
       steps:
         - uses: actions/checkout@v3
         - uses: superfly/flyctl-actions/setup-flyctl@master
-        - run: flyctl deploy server --remote-only
+        # - run: flyctl deploy server --remote-only TO DO: uncomment when crates are public
         - run: flyctl deploy client --build-target prod --remote-only
