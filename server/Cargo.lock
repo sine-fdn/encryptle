@@ -1412,6 +1412,7 @@ dependencies = [
 [[package]]
 name = "tandem"
 version = "0.0.1-alpha-do-not-use"
+source = "git+https://github.com/sine-fdn/tandem#6cbf56039deef7dafa83e5787b444601dca57e08"
 dependencies = [
  "bincode",
  "blake3",
@@ -1424,6 +1425,7 @@ dependencies = [
 [[package]]
 name = "tandem_garble_interop"
 version = "0.1.0"
+source = "git+https://github.com/sine-fdn/tandem#6cbf56039deef7dafa83e5787b444601dca57e08"
 dependencies = [
  "garble_lang",
  "tandem",
@@ -1432,6 +1434,7 @@ dependencies = [
 [[package]]
 name = "tandem_http_server"
 version = "0.1.0"
+source = "git+https://github.com/sine-fdn/tandem#6cbf56039deef7dafa83e5787b444601dca57e08"
 dependencies = [
  "bincode",
  "blake3",

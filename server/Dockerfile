@@ -1,9 +1,12 @@
 # syntax = docker/dockerfile-upstream:master-labs
-FROM rust:latest
-
+FROM rust:1.65 AS builder
 WORKDIR /usr/src/encryptle
 COPY . .
-RUN cargo install --path .
+RUN rustup target add x86_64-unknown-linux-musl
+RUN cargo install --target x86_64-unknown-linux-musl --path .
+
+FROM alpine:3.16
+COPY --from=builder /usr/local/cargo/bin/encryptle /usr/local/bin/encryptle
 
 ENV ROCKET_ADDRESS=0.0.0.0
 ENV ROCKET_PORT=8000
