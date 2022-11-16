@@ -17,7 +17,7 @@ Hence, although the latter is kept secret, the former are shared with the server
 Encryptle uses [Secure Multi-Party Computation](https://sine.foundation/library/002-smpc), 
 keeping both the secret word _and the player's guesses_ private.
 
-This project was developed to serve as a demo for SINE's [tandem engine](https://github.com/sine-fdn/wrk17-alpha). 
+This project was developed to serve as a demo for SINE's [tandem engine](https://github.com/sine-fdn/tandem). 
 
 ## Technologies
 
@@ -33,14 +33,14 @@ The client adapts [this repository](https://github.com/cwackerfuss/react-wordle)
 
 Start the server by running the following commands:
 ```
-$ cd mpc-server
+$ cd server
 $ cargo install --path . 
-$ mpc-server
+$ encryptle
 ```
 
 Start the client by running the following commands:
 ```
-$ cd react-wordle
+$ cd client
 $ npm install
 $ npm run start
 ```
@@ -50,24 +50,24 @@ Open http://localhost:3000 and play!
 
 Build and run the server using the following commands:
 ```
-$ cd mpc-wordle
-$ docker build -t mpc-server -f mpc-server/Dockerfile .
-$ docker run -p 8000:8000 --name mpc-server
+$ cd server
+$ docker build -t encryptle-server -f server/Dockerfile .
+$ docker run -p 8000:8000 --name encryptle-server
 ```
 
 Build and run the client for __development__ using the following commands:
 ```
-$ cd react-wordle
-$ docker build -t reactle:dev .
-$ docker run -p 3000:3000 --name reactle-dev reactle:dev
+$ cd client
+$ docker build -t enctyptle-client:dev .
+$ docker run -p 3000:3000 --name encryptle-client-dev encryptle-client:dev
 ```
 Open http://localhost:3000 and play!
 
 Build and run the client for __production__ using the following commands:
 ```
-$ cd react-wordle
-$ docker build --target=prod -t reactle:prod .
-$ docker run -p 80:8080  --name reactle-prod reactle:prod
+$ cd client
+$ docker build --target=prod -t encryptle-client:prod .
+$ docker run -p 80:8080  --name encryptle-client-prod encryptle-client:prod
 ```
 
 ## Contributions
