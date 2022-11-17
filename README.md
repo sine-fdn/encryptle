@@ -2,7 +2,7 @@
 
 <img src="https://avatars.githubusercontent.com/u/67928740?s=200&v=4" alt="SINE" height="150" align="right"/>
 
-Secure Multi-Party Computation Wordle
+Secure Multi-Party Computation word-guessing game
 
 ## Description
 
