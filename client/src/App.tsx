@@ -51,7 +51,7 @@ import {
     setGameDate,
     unicodeLength,
 } from './lib/words'
-import init, { MpcData, MpcProgram, compute } from './pkg/m1_http_client'
+import init, { MpcData, MpcProgram, compute } from './pkg/tandem_http_client'
 import { getToday } from './lib/dateutils'
 import wordle_code from './garble/wordle_code'
 
@@ -407,7 +407,7 @@ async function checkGuess(guess: string): Promise<[boolean, GuessedWord]> {
     if (process.env.NODE_ENV === 'development') {
         url = 'http://localhost:8000'
     } else {
-        url = 'https://mpc-wordle-backend.fly.dev:8000/'
+        url = 'https://encryptle-server.fly.dev:8000/'
     }
 
     const { Array: guessedChars } = (await compute(url, "", mpc_program, mpc_input)).to_literal()
