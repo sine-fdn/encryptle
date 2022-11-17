@@ -17,7 +17,7 @@ Hence, although the latter is kept secret, the former are shared with the server
 Encryptle uses [Secure Multi-Party Computation](https://sine.foundation/library/002-smpc),
 keeping both the secret word _and the player's guesses_ private.
 
-This project was developed to serve as a demo for SINE's [tandem engine](https://github.com/sine-fdn/tandem).
+This project was developed to serve as a demo for SINE's [Tandem engine](https://github.com/sine-fdn/tandem).
 
 ## Technologies
 
