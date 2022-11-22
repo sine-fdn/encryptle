@@ -27,35 +27,27 @@ The server is powered by `rocket.rs` and implements SINE's tandem engine, which 
 
 The client adapts [this repository](https://github.com/cwackerfuss/react-wordle), which uses (mainly) React and Typescript.
 
-## Build and run
+## Build and run 
 
-### Run locally
+### Server
 
-Start the server by running the following commands:
+You can start the server by running the following commands:
 ```
 $ cd server
 $ cargo install --path .
 $ encryptle
 ```
 
-Start the client by running the following commands:
-```
-$ cd client
-$ npm install
-$ npm run start
-```
-Open http://localhost:3000 and play!
-
-### Build and run Docker containers
-
-Build and run the server using the following commands:
+Alternatively, you can build and run a Docker container with the server using the following commands:
 ```
 $ cd server
 $ docker build -t encryptle-server -f server/Dockerfile .
 $ docker run -p 8000:8000 --name encryptle-server
 ```
 
-Build and run the client for __development__ using the following commands:
+### Client
+
+Build and run a Docker container with the client for __development__ using the following commands:
 ```
 $ cd client
 $ docker build -t enctyptle-client:dev .
@@ -63,7 +55,7 @@ $ docker run -p 3000:3000 --name encryptle-client-dev encryptle-client:dev
 ```
 Open http://localhost:3000 and play!
 
-Build and run the client for __production__ using the following commands:
+Build and run a Docker container with the client for __production__ using the following commands:
 ```
 $ cd client
 $ docker build --target=prod -t encryptle-client:prod .
