@@ -50,7 +50,7 @@ $ docker run -p 8000:8000 --name encryptle-server
 Build and run a Docker container with the client for __development__ using the following commands:
 ```
 $ cd client
-$ docker build -t enctyptle-client:dev .
+$ docker build -t encryptle-client:dev .
 $ docker run -p 3000:3000 --name encryptle-client-dev encryptle-client:dev
 ```
 Open http://localhost:3000 and play!
