@@ -1,14 +1,14 @@
 [package]
-name = "m1-wordle"
+name = "encryptle"
 version = "0.1.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-m1 = { version = "0.0.1-alpha-do-not-use", path = "./wrk17-alpha/m1" }
-m1_garble_interop = { path = "./wrk17-alpha/m1_garble_interop" }
-m1_http_server = { path = "./wrk17-alpha/m1_http_server" }
+tandem = { git = "https://github.com/sine-fdn/tandem" }
+tandem_garble_interop = { git = "https://github.com/sine-fdn/tandem" }
+tandem_http_server = { git = "https://github.com/sine-fdn/tandem" }
 rocket = { version = "0.5.0-rc.1", features = ["json"] }
 rand = "0.8.3"
 bincode = "1.3"

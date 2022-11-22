@@ -1,6 +1,6 @@
-# fly.toml file generated for mpc-wordle on 2022-10-12T13:13:36+02:00
+# fly.toml file generated for encryptle on 2022-11-10T14:23:47Z
 
-app = "mpc-wordle"
+app = "encryptle"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []
@@ -10,9 +10,6 @@ processes = []
 [experimental]
   allowed_public_ports = []
   auto_rollback = true
-
-[build]
-  build-target = "prod"
 
 [[services]]
   http_checks = []
