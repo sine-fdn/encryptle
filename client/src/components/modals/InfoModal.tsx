@@ -83,7 +83,7 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
                         rel="noreferrer"
                         className="font-bold underline"
                     >
-                        SINE's Multi-Party Computation (MPC) engine
+                        SINE's Secure Multi-Party Computation (SMPC) engine
                     </a>:
                 </p>
             </div>
@@ -118,7 +118,7 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
 
 
             <p className="text-sm text-gray-500 dark:text-gray-300">
-                With MPC, neither you nor the server have to trust each other. Your guess is never sent directly to the server. Instead, both parties encrypt their data and cooperatively check the guess against the solution, without revealing the guess or the solution.
+                With SMPC, neither you nor the server have to trust each other. Your guess is never sent directly to the server. Instead, both parties encrypt their data and cooperatively check the guess against the solution, without revealing the guess or the solution.
             </p>
 
             <p className="mt-8 text-sm italic text-gray-500 dark:text-gray-300">

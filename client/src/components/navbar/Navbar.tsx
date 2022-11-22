@@ -39,7 +39,7 @@ export const Navbar = ({
                 </div>
                 <div className="text-center">
                     <h1 className="text-xl font-bold dark:text-white pl-9">{GAME_TITLE}</h1>
-                    <p className="dark:text-white"><a className="underline decoration-yellow-200 decoration-4 pl-9" href="https://sine.foundation/library/002-smpc" target="_blank" rel="noreferrer">SMPC</a> Wordle by</p>
+                    <p className="dark:text-white"><a className="underline decoration-yellow-200 decoration-4 pl-9" href="https://sine.foundation/library/002-smpc" target="_blank" rel="noreferrer">SMPC</a> word-guessing game by</p>
 
                     <a
                         href="https://sine.foundation/" target="_blank" rel="noreferrer">

@@ -2,11 +2,11 @@
 
 <img src="https://avatars.githubusercontent.com/u/67928740?s=200&v=4" alt="SINE" height="150" align="right"/>
 
-Secure Multi-Party Computation Wordle
+Secure Multi-Party Computation word-guessing game
 
 ## Description
 
-A version of [New York Times' popular game _Wordle_](https://www.nytimes.com/games/wordle/index.html), using SINE's [tandem engine](https://github.com/sine-fdn/wrk17-alpha).
+A version of [New York Times' popular game _Wordle_](https://www.nytimes.com/games/wordle/index.html), using SINE's [Tandem engine](https://github.com/sine-fdn/tandem).
 
 [__Play here__!](https://encryptle.sine.dev)
 
@@ -17,7 +17,7 @@ Hence, although the latter is kept secret, the former are shared with the server
 Encryptle uses [Secure Multi-Party Computation](https://sine.foundation/library/002-smpc),
 keeping both the secret word _and the player's guesses_ private.
 
-This project was developed to serve as a demo for SINE's [tandem engine](https://github.com/sine-fdn/tandem). 
+This project was developed to serve as a demo for SINE's [Tandem engine](https://github.com/sine-fdn/tandem).
 
 ## Technologies
 
