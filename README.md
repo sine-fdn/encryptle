@@ -1,6 +1,6 @@
 # Encryptle
 
-<img src="https://avatars.githubusercontent.com/u/67928740?s=200&v=4" alt="SINE" height="150" align="right"/>
+<img src="https://user-images.githubusercontent.com/100690574/204781884-6b368168-8af9-4495-8e59-f2639623f11c.png" alt="SINE" height="150" align="right"/>
 
 Secure Multi-Party Computation word-guessing game
 
