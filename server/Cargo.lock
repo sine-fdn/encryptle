@@ -145,9 +145,9 @@ checksum = "bef38d45163c2f1dde094a7dfd33ccf595c92905c8f8f4fdc18d06fb1037718a"
 
 [[package]]
 name = "blake3"
-version = "1.3.1"
+version = "1.3.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a08e53fc5a564bb15bfe6fae56bd71522205f1f91893f9c0116edad6496c183f"
+checksum = "42ae2468a89544a466886840aa467a25b766499f4f04bf7d9fcd10ecee9fccef"
 dependencies = [
  "arrayref",
  "arrayvec",
@@ -233,9 +233,9 @@ dependencies = [
 
 [[package]]
 name = "constant_time_eq"
-version = "0.1.5"
+version = "0.2.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "245097e9a4535ee1e3e3931fcfcd55a796a44c643e8596ff6566d68f09b87bbc"
+checksum = "f3ad85c1f65dc7b37604eb0e89748faf0b9653065f2a8ef69f96a687ec1e9279"
 
 [[package]]
 name = "cookie"
@@ -1411,8 +1411,9 @@ dependencies = [
 
 [[package]]
 name = "tandem"
-version = "0.0.1-alpha-do-not-use"
-source = "git+https://github.com/sine-fdn/tandem#6cbf56039deef7dafa83e5787b444601dca57e08"
+version = "0.2.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "92db0ab1f76c45b03a538f82a7978d86b9fe680551e6a6eeaeb56607bf418d08"
 dependencies = [
  "bincode",
  "blake3",
@@ -1424,8 +1425,9 @@ dependencies = [
 
 [[package]]
 name = "tandem_garble_interop"
-version = "0.1.0"
-source = "git+https://github.com/sine-fdn/tandem#6cbf56039deef7dafa83e5787b444601dca57e08"
+version = "0.2.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "66a9c55e6f141b7658e6da981958cd74bd0c1dca80a7a60c8a13cfa8aa291b76"
 dependencies = [
  "garble_lang",
  "tandem",
@@ -1433,8 +1435,9 @@ dependencies = [
 
 [[package]]
 name = "tandem_http_server"
-version = "0.1.0"
-source = "git+https://github.com/sine-fdn/tandem#6cbf56039deef7dafa83e5787b444601dca57e08"
+version = "0.2.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "fa09e516f3dbf8f4389eb81127cbc0f572f1a42a8922004be7b97c3a3121c5eb"
 dependencies = [
  "bincode",
  "blake3",

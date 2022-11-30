@@ -1,6 +1,6 @@
 # Encryptle
 
-<img src="https://user-images.githubusercontent.com/100690574/204781884-6b368168-8af9-4495-8e59-f2639623f11c.png" alt="SINE" height="150" align="right"/>
+<img src="https://user-images.githubusercontent.com/100690574/204781884-6b368168-8af9-4495-8e59-f2639623f11c.png" alt="SINE Logo" height="150" align="right"/>
 
 Secure Multi-Party Computation word-guessing game
 
@@ -27,7 +27,7 @@ The server is powered by `rocket.rs` and implements SINE's tandem engine, which 
 
 The client adapts [this repository](https://github.com/cwackerfuss/react-wordle), which uses (mainly) React and Typescript.
 
-## Build and run 
+## Build and run
 
 ### Server
 
