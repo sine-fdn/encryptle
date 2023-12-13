@@ -6,9 +6,9 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-tandem = "0.2.1"
-tandem_garble_interop = "0.2.1"
-tandem_http_server = "0.2.1"
+tandem = "0.3.0"
+tandem_garble_interop = "0.3.0"
+tandem_http_server = "0.3.0"
 rocket = { version = "0.5.0-rc.1", features = ["json"] }
 rand = "0.8.3"
 bincode = "1.3"
