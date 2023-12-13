@@ -1,5 +1,5 @@
 # syntax = docker/dockerfile-upstream:master-labs
-FROM rust:1.65 AS builder
+FROM rust:1.74 AS builder
 WORKDIR /usr/src/encryptle
 COPY . .
 RUN rustup target add x86_64-unknown-linux-musl

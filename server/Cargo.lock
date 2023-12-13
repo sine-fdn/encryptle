@@ -1433,9 +1433,9 @@ dependencies = [
 
 [[package]]
 name = "tandem"
-version = "0.2.1"
+version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "92db0ab1f76c45b03a538f82a7978d86b9fe680551e6a6eeaeb56607bf418d08"
+checksum = "f10c3b5f176ef9008164b0a9c78238ef86e591adc1492d71ba367ae0b423859d"
 dependencies = [
  "bincode",
  "blake3",
@@ -1447,9 +1447,9 @@ dependencies = [
 
 [[package]]
 name = "tandem_garble_interop"
-version = "0.2.1"
+version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "66a9c55e6f141b7658e6da981958cd74bd0c1dca80a7a60c8a13cfa8aa291b76"
+checksum = "2766403ac21d9c196be169cdda0515323677a2e1355d94a198edf8dc216eb476"
 dependencies = [
  "garble_lang",
  "tandem",
@@ -1457,9 +1457,9 @@ dependencies = [
 
 [[package]]
 name = "tandem_http_server"
-version = "0.2.1"
+version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "fa09e516f3dbf8f4389eb81127cbc0f572f1a42a8922004be7b97c3a3121c5eb"
+checksum = "46155a5ca2f707f5a425972935510a324477dff3d1d8500292bae4824f4cfd44"
 dependencies = [
  "bincode",
  "blake3",
