@@ -41,7 +41,7 @@ $ encryptle
 Alternatively, you can build and run a Docker container with the server using the following commands:
 ```
 $ cd server
-$ docker build -t encryptle-server -f server/Dockerfile .
+$ docker build -t encryptle-server -f Dockerfile .
 $ docker run -p 8000:8000 --name encryptle-server
 ```
 
